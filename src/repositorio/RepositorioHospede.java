@@ -1,6 +1,6 @@
 package repositorio;
 
-import negocio.Hospede;
+import negocio.entidade.Hospede;
 
 import java.util.ArrayList;
 

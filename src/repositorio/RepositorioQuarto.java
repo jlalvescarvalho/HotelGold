@@ -1,6 +1,6 @@
 package repositorio;
 
-import negocio.Quarto;
+import negocio.entidade.Quarto;
 
 import java.util.ArrayList;
 

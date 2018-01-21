@@ -1,4 +1,4 @@
-package negocio;
+package negocio.entidade;
 
 public class Hospede {
     private String nome;

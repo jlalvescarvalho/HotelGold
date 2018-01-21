@@ -1,4 +1,4 @@
-package negocio;
+package negocio.entidade;
 
 public class Endereco {
     private String uf;

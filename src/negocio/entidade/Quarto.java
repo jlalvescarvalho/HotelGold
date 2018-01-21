@@ -1,4 +1,4 @@
-package negocio;
+package negocio.entidade;
 
 public class Quarto {
     private int numero;

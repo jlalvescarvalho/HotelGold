@@ -1,5 +1,8 @@
 package negocio;
 
+import negocio.entidade.Hospede;
+import negocio.entidade.Quarto;
+import negocio.entidade.Reserva;
 import repositorio.RepositorioReserva;
 
 public class NegocioReserva {

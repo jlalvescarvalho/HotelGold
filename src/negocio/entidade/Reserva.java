@@ -1,4 +1,4 @@
-package negocio;
+package negocio.entidade;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
