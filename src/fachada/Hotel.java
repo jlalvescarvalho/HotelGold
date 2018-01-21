@@ -1,6 +1,11 @@
 package fachada;
 
-import negocio.*;
+import negocio.NegocioHospede;
+import negocio.NegocioQuarto;
+import negocio.NegocioReserva;
+import negocio.entidade.Hospede;
+import negocio.entidade.Quarto;
+import negocio.entidade.Reserva;
 
 public class Hotel {
 
