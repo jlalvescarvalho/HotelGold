@@ -28,14 +28,9 @@ public class RepositorioReserva {
         return listaReservas;
     }
 
-    public String removerReserva(long id){
-        Reserva r = recuperarReserva(id);
+    public void removerReserva(Reserva reserva){
+        this.listaReservas.remove(reserva);
 
-        if(r != null){
-            this.listaReservas.remove(r);
-            return "Reserva removida!";
-        }
-        return "Reserva não existe!";
     }
 
 

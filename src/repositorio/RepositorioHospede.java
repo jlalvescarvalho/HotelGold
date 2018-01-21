@@ -18,7 +18,7 @@ public class RepositorioHospede {
         return "Hospede cadastrado!";
     }
 
-    public Hospede recuperarHospede(String cpf){
+    public Hospede buscarHospede(String cpf){
         for(int i = 0; i < this.listaHospedes.size(); i++){
             if (this.listaHospedes.get(i).getCpf().equals(cpf)){
                 return this.listaHospedes.get(i);

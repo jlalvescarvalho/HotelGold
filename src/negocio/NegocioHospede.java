@@ -12,7 +12,7 @@ public class NegocioHospede {
 
 
     public String cadastrarHospede(Hospede hospede){
-        if(repositorio.recuperarHospede(hospede.getCpf())== null){
+        if(repositorio.buscarHospede(hospede.getCpf())== null){
             repositorio.cadastrarHospede(hospede);
             return "Cadastrado com sucesso";
         }
@@ -20,8 +20,9 @@ public class NegocioHospede {
             return "Este hóspede já está cadastrado.";
         }
     }
-    public void alterarHospede(Hospede hospede){
-        int indice = repositorio.indiceHospede(hospede.getCpf());
+    public void alterarHospede(String cpf){
+        Hospede hospede = repositorio.buscarHospede(cpf);
+        int indice = repositorio.indiceHospede(cpf);
         if(indice != -1){
             repositorio.alterarHospede(hospede, indice);
         }
@@ -30,7 +31,7 @@ public class NegocioHospede {
         }
     }
     public void removerHospede(String cpf){
-        Hospede h = repositorio.recuperarHospede(cpf);
+        Hospede h = repositorio.buscarHospede(cpf);
         if(h != null){
             repositorio.removerHospede(h);
         }else{
@@ -38,8 +39,8 @@ public class NegocioHospede {
         }
     }
 
-    public Hospede recuperarHospede(String cpf){
-        Hospede h = repositorio.recuperarHospede(cpf);
+    public Hospede buscarHospede(String cpf){
+        Hospede h = repositorio.buscarHospede(cpf);
 
         if(h!= null){
             return h;

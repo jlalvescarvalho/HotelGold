@@ -17,7 +17,7 @@ public class NegocioReserva {
 
     public void cadastarReserva(Reserva reserva){
         Quarto  quarto = negocioQuarto.buscarQuarto(reserva.getQuarto().getNumero());
-        Hospede hospede = negocioHospede.recuperarHospede(reserva.getHospede().getCpf());
+        Hospede hospede = negocioHospede.buscarHospede(reserva.getHospede().getCpf());
 
         if(quarto != null && hospede != null && reserva.getQuarto().getOcupado() == false){
             reserva.getQuarto().setOcupado(true);
@@ -50,7 +50,15 @@ public class NegocioReserva {
 
     }
 
-    public void removerReserva(){
+    public void removerReserva(long id){
+        Reserva r = buscarReserva(id);
+
+        if(r != null){
+            repositorioReserva.removerReserva(r);
+        }
+        else{
+
+        }
 
     }
 

@@ -51,7 +51,7 @@ public class Hospede {
     public int getFrequencia() {
         return frequencia;
     }
-    
+
     public void zerarFrequencia() {
         this.frequencia = 0;
     }
