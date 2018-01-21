@@ -63,6 +63,10 @@ public class Hotel {
         negocioHospede.removerHospede(cpf);
     }
 
+    public void removerReserva(long id) {
+        negocioReserva.removerReserva(id);
+    }
+
 
 
 }
