@@ -1,5 +1,6 @@
 package negocio;
 
+import negocio.entidade.Hospede;
 import repositorio.RepositorioHospede;
 
 public class NegocioHospede {

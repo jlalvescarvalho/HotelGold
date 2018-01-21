@@ -1,5 +1,8 @@
 package negocio;
 
+import negocio.entidade.Hospede;
+import negocio.entidade.Quarto;
+import negocio.entidade.Reserva;
 import repositorio.RepositorioReserva;
 
 public class NegocioReserva {
@@ -16,7 +19,7 @@ public class NegocioReserva {
     }
 
     public void cadastarReserva(Reserva reserva){
-        Quarto  quarto = negocioQuarto.buscarQuarto(reserva.getQuarto().getNumero());
+        Quarto quarto = negocioQuarto.buscarQuarto(reserva.getQuarto().getNumero());
         Hospede hospede = negocioHospede.recuperarHospede(reserva.getHospede().getCpf());
 
         if(quarto != null && hospede != null && reserva.getQuarto().getOcupado() == false){

@@ -1,4 +1,4 @@
-package negocio;
+package negocio.entidade;
 
 public enum RefeicaoEnum {
     CafeDaManha(20.0), Almoco(30.0), Janta(20.0);

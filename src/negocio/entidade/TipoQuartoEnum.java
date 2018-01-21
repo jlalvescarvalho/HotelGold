@@ -1,4 +1,4 @@
-package negocio;
+package negocio.entidade;
 
 public enum TipoQuartoEnum {
     QuartoSolteiro(150.0), QuartoDuploSolteiro(250.0), QuartoCasal(300.0), QuartoFamilia(400.0);

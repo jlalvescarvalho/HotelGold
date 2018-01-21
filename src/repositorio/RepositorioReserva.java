@@ -1,6 +1,6 @@
 package repositorio;
 
-import negocio.Reserva;
+import negocio.entidade.Reserva;
 
 import java.util.ArrayList;
 
