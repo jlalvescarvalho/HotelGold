@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/negocio/BebidasEnum.java" afterPath="$PROJECT_DIR$/src/negocio/entidade/BebidasEnum.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/negocio/CartaoConsumo.java" afterPath="$PROJECT_DIR$/src/negocio/entidade/CartaoConsumo.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/negocio/Endereco.java" afterPath="$PROJECT_DIR$/src/negocio/entidade/Endereco.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/negocio/Hospede.java" afterPath="$PROJECT_DIR$/src/negocio/entidade/Hospede.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/negocio/Quarto.java" afterPath="$PROJECT_DIR$/src/negocio/entidade/Quarto.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/negocio/RefeicaoEnum.java" afterPath="$PROJECT_DIR$/src/negocio/entidade/RefeicaoEnum.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/negocio/Reserva.java" afterPath="$PROJECT_DIR$/src/negocio/entidade/Reserva.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/negocio/TipoQuartoEnum.java" afterPath="$PROJECT_DIR$/src/negocio/entidade/TipoQuartoEnum.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/negocio/TipoReservaEnum.java" afterPath="$PROJECT_DIR$/src/negocio/entidade/TipoReservaEnum.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/negocio/NegocioHospede.java" afterPath="$PROJECT_DIR$/src/negocio/NegocioHospede.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/negocio/NegocioQuarto.java" afterPath="$PROJECT_DIR$/src/negocio/NegocioQuarto.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/negocio/NegocioReserva.java" afterPath="$PROJECT_DIR$/src/negocio/NegocioReserva.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/repositorio/RepositorioHospede.java" afterPath="$PROJECT_DIR$/src/repositorio/RepositorioHospede.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/repositorio/RepositorioQuarto.java" afterPath="$PROJECT_DIR$/src/repositorio/RepositorioQuarto.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/repositorio/RepositorioReserva.java" afterPath="$PROJECT_DIR$/src/repositorio/RepositorioReserva.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/negocio/execao/HopedeInvalidoException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/negocio/execao/QuartoInvalidoException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/negocio/execao/ReservaInvalidaException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,7 +62,47 @@
     <favorites_list name="JavaFxApplication" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="HopedeInvalidoException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/negocio/execao/HopedeInvalidoException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+              <folding>
+                <element signature="e#129#130#0" expanded="true" />
+                <element signature="e#155#156#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReservaInvalidaException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/negocio/execao/ReservaInvalidaException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding>
+                <element signature="e#131#132#0" expanded="true" />
+                <element signature="e#157#158#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuartoInvalidoException.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/negocio/execao/QuartoInvalidoException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding>
+                <element signature="e#129#130#0" expanded="true" />
+                <element signature="e#155#156#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -114,6 +143,9 @@
         <option value="$PROJECT_DIR$/src/repositorio/RepositorioReserva.java" />
         <option value="$PROJECT_DIR$/src/negocio/Hospede.java" />
         <option value="$PROJECT_DIR$/src/negocio/entidade/BebidasEnum.java" />
+        <option value="$PROJECT_DIR$/src/negocio/execao/HopedeInvalidoException.java" />
+        <option value="$PROJECT_DIR$/src/negocio/execao/ReservaInvalidaException.java" />
+        <option value="$PROJECT_DIR$/src/negocio/execao/QuartoInvalidoException.java" />
       </list>
     </option>
   </component>
@@ -124,7 +156,9 @@
     <option name="width" value="1612" />
     <option name="height" value="876" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
   </component>
@@ -167,6 +201,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="negocio" type="462c0819:PsiDirectoryNode" />
               <item name="entidade" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HotelGold" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HotelGold" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="negocio" type="462c0819:PsiDirectoryNode" />
+              <item name="execao" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="HotelGold" type="b2602c69:ProjectViewProjectNode" />
@@ -360,6 +401,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -373,7 +415,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16398244" sideWeight="0.6703755" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16398244" sideWeight="0.6703755" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -412,22 +454,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/negocio/entidade/Quarto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/negocio/entidade/Reserva.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="15" lean-forward="false" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/negocio/NegocioHospede.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="833">
@@ -905,6 +931,39 @@
         <state relative-caret-position="22">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/negocio/execao/HopedeInvalidoException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="5" lean-forward="false" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+          <folding>
+            <element signature="e#129#130#0" expanded="true" />
+            <element signature="e#155#156#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/negocio/execao/ReservaInvalidaException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="e#131#132#0" expanded="true" />
+            <element signature="e#157#158#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/negocio/execao/QuartoInvalidoException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="e#129#130#0" expanded="true" />
+            <element signature="e#155#156#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
