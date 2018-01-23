@@ -1,4 +1,4 @@
-package negocio.execao;
+package negocio.execao.quarto;
 
 public class QuartoNaoExisteException extends Exception {
 

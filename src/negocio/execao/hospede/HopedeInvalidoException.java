@@ -1,4 +1,4 @@
-package negocio.execao;
+package negocio.execao.hospede;
 
 public class HopedeInvalidoException extends Exception{
 

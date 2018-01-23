@@ -1,4 +1,4 @@
-package negocio.execao;
+package negocio.execao.reserva;
 
 public class ReservaJaExisteException extends Exception {
 
