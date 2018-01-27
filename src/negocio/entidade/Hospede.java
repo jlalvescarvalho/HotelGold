@@ -3,16 +3,16 @@ package negocio.entidade;
 public class Hospede {
     private String nome;
     private String cpf;
+    private CartaoConsumo cartaoConsumo;
     private String telefone;
-    private Endereco endereco;
     private int frequencia;
 
 
-    public Hospede(String nome, String cpf, String telefone, Endereco endereco) {
+    public Hospede(String nome, String cpf, String telefone) {
         this.nome = nome;
         this.cpf = cpf;
+        this.cartaoConsumo = new CartaoConsumo();
         this.telefone = telefone;
-        this.endereco = endereco;
         this.frequencia = 0;
     }
 
@@ -32,20 +32,20 @@ public class Hospede {
         this.cpf = cpf;
     }
 
+    public CartaoConsumo getCartaoConsumo() {
+        return cartaoConsumo;
+    }
+
+    public void setCartaoConsumo(CartaoConsumo cartaoConsumo) {
+        this.cartaoConsumo = cartaoConsumo;
+    }
+
     public String getTelefone() {
         return telefone;
     }
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
     }
 
     public int getFrequencia() {
@@ -57,5 +57,21 @@ public class Hospede {
     }
     public void incrementarFrequencia(){
         this.frequencia++;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Hospede) {
+            Hospede hospede = (Hospede) obj;
+            if (this.cpf.equals(hospede.getCpf())) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    @Override
+    public String toString() {
+        return "Nome do Hospede: " + this.nome + "; cpf: " + this.cpf ;
     }
 }

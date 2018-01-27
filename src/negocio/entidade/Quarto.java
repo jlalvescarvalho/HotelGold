@@ -5,7 +5,7 @@ public class Quarto {
     private TipoQuartoEnum tipo;
     private boolean ocupado;
 
-    public static int NumeroQuarto = 1;
+    private static int NumeroQuarto = 1;
 
 
     public Quarto( TipoQuartoEnum tipo) {
@@ -33,9 +33,23 @@ public class Quarto {
         return ocupado;
     }
 
-    /* Thaís: Onde é chamado? Para confirmar uma reserva é preciso checar a disponibilidade de quartos, né? */
     public void setOcupado(boolean ocupado) {
         this.ocupado = ocupado;
     }
-
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Quarto) {
+            Quarto quarto = (Quarto) obj;
+            if (this.numero == quarto.getNumero() && this.tipo.equals(quarto.getTipo())) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    @Override
+    public String toString() {
+        return "Número do Quarto: " + this.numero + "; Tipo do Quarto: " + this.tipo.name();
+    }
 }

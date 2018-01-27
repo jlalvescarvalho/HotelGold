@@ -13,9 +13,8 @@ public class RepositorioHospede {
 
 
 
-    public String cadastrarHospede(Hospede hospede) {
+    public void cadastrarHospede(Hospede hospede) {
         this.listaHospedes.add(hospede);
-        return "Hospede cadastrado!";
     }
 
     public Hospede buscarHospede(String cpf){
@@ -31,7 +30,7 @@ public class RepositorioHospede {
         listaHospedes.remove(hospede);
     }
 
-    public void alterarHospede(Hospede hospede, int indice){
+    public void alterarHospede( int indice, Hospede hospede){
         listaHospedes.set(indice, hospede);
     }
 

@@ -11,7 +11,7 @@ public class Reserva {
     private Hospede hospede;
     private TipoReservaEnum tipoReserva;
 
-    public static int contadorId = 1;
+    private static int contadorId = 1;
 
     public Reserva(Quarto quarto, Date dataEntrada, Date dataSaida, Hospede hospede, TipoReservaEnum tipoReserva) {
         this.id = contadorId++;
@@ -94,5 +94,9 @@ public class Reserva {
     public void setHospede(Hospede hospede) {
         this.hospede = hospede;
     }
-
+    
+    public void checkOut(){
+        double total = this.calcularConta() + this.hospede.getCartaoConsumo().calcularConsumo();
+        this.quarto.setOcupado(false);
+    }
 }

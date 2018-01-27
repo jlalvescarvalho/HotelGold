@@ -3,6 +3,11 @@ package negocio;
 import negocio.entidade.Hospede;
 import negocio.entidade.Quarto;
 import negocio.entidade.Reserva;
+import negocio.execao.hospede.HospedeNaoExisteException;
+import negocio.execao.quarto.QuartoNaoExisteException;
+import negocio.execao.quarto.QuartoOcupadoException;
+import negocio.execao.reserva.ReservaJaExisteException;
+import negocio.execao.reserva.ReservaNaoExisteException;
 import repositorio.RepositorioReserva;
 
 public class NegocioReserva {
@@ -18,49 +23,53 @@ public class NegocioReserva {
         this.negocioQuarto = new NegocioQuarto();
     }
 
-    public void cadastarReserva(Reserva reserva){
+    public void cadastarReserva(Reserva reserva) throws HospedeNaoExisteException, QuartoNaoExisteException, QuartoOcupadoException{
         Quarto  quarto = negocioQuarto.buscarQuarto(reserva.getQuarto().getNumero());
         Hospede hospede = negocioHospede.buscarHospede(reserva.getHospede().getCpf());
 
-        if(quarto != null && hospede != null && reserva.getQuarto().getOcupado() == false){
+        if(quarto == null ){
+            throw new QuartoNaoExisteException();
+        }else if(hospede == null){
+            throw new HospedeNaoExisteException();
+        }else if(reserva.getQuarto().getOcupado() != false){
+            throw new QuartoOcupadoException();
+        }else{
             reserva.getQuarto().setOcupado(true);
             repositorioReserva.cadastrarReserva(reserva);
-        }else{
-
         }
     }
 
-    public Reserva buscarReserva(long id){
+    public Reserva buscarReserva(long id) throws ReservaNaoExisteException{
         Reserva reserva = repositorioReserva.recuperarReserva(id);
 
         if(reserva != null){
             return reserva;
         }else{
-            return null;
+            throw new ReservaNaoExisteException();
         }
 
     }
 
-    public void alterarReserva(Reserva reserva){
+    public void alterarReserva(Reserva reserva) throws ReservaNaoExisteException{
         Reserva r = repositorioReserva.recuperarReserva(reserva.getId());
         int indice = repositorioReserva.indiceReserva(reserva.getId());
 
         if(r != null){
             repositorioReserva.atualizarReserva(indice,reserva);
         }else{
-
+            throw new ReservaNaoExisteException();
         }
 
     }
 
-    public void removerReserva(long id){
+    public void removerReserva(long id) throws ReservaNaoExisteException{
         Reserva r = buscarReserva(id);
 
         if(r != null){
             repositorioReserva.removerReserva(r);
         }
         else{
-
+            throw new ReservaNaoExisteException();
         }
 
     }

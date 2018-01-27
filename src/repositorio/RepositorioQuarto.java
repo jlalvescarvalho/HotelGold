@@ -28,14 +28,24 @@ public class RepositorioQuarto {
         this.listaQuartos.remove(quarto);
     }
 
-    /* Thaís: Tem que checar a disponibilidade também. Além disso, por que remover e recadastrar a reserva, ao invés
-    *  de simplesmente alterá-la?! */
     public void atualizarQuarto(int indice, Quarto quarto){
         this.listaQuartos.set(indice, quarto);
     }
 
     public ArrayList<Quarto> recuperarTodos() {
         return listaQuartos;
+    }
+    
+    public ArrayList<Quarto> quartosDesocupados(){
+        ArrayList<Quarto> desocupados = new ArrayList<>();
+        
+        for(Quarto q : listaQuartos){
+            if(q.getOcupado() == false){
+                desocupados.add(q);
+            }
+        }
+        
+        return desocupados;
     }
 
     public int indiceQuarto(int numero){

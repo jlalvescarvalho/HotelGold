@@ -1,6 +1,8 @@
 package negocio;
 
 import negocio.entidade.Quarto;
+import negocio.execao.quarto.QuartoJaExisteException;
+import negocio.execao.quarto.QuartoNaoExisteException;
 import repositorio.RepositorioQuarto;
 
 public class NegocioQuarto {
@@ -11,45 +13,43 @@ public class NegocioQuarto {
         this.repositorioQuarto =  new RepositorioQuarto();
     }
 
-    public void cadastrarQuarto(Quarto quarto){
+    public void cadastrarQuarto(Quarto quarto) throws QuartoJaExisteException{
 
         if(repositorioQuarto.recuperarQuarto(quarto.getNumero()) == null){
             repositorioQuarto.cadastrarQuarto(quarto);
         }else{
-
+            throw new QuartoJaExisteException();
         }
     }
 
-    public void alterarQuarto(int numero){
+    public void alterarQuarto(int numero) throws QuartoNaoExisteException{
         Quarto q = repositorioQuarto.recuperarQuarto(numero);
         int indice = repositorioQuarto.indiceQuarto(numero);
 
         if(q != null && q.getOcupado() == false){
             repositorioQuarto.atualizarQuarto(indice,q);
         }else{
-
+            throw new QuartoNaoExisteException();
         }
-
     }
 
-    public void removerQuarto(int numero){
+    public void removerQuarto(int numero) throws QuartoNaoExisteException{
         Quarto q = repositorioQuarto.recuperarQuarto(numero);
 
         if(q != null && q.getOcupado() == false){
             repositorioQuarto.removerQuarto(q);
         }else{
-
+            throw new QuartoNaoExisteException();
         }
     }
 
-    public Quarto buscarQuarto(int numero){
+    public Quarto buscarQuarto(int numero) throws QuartoNaoExisteException{
         Quarto q = repositorioQuarto.recuperarQuarto(numero);
 
         if(q != null ){
             return q;
         }else{
-            return null;
+            throw new QuartoNaoExisteException();
         }
     }
-
 }

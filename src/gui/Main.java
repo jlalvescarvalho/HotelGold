@@ -11,7 +11,9 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("TelaInicial.fxml"));      
-        Scene scene = new Scene(root);   
+        Scene scene = new Scene(root);
+        stage.setTitle("Hotel Gold");
+        stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
     }
