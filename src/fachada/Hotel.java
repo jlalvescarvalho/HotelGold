@@ -45,24 +45,24 @@ public class Hotel {
         negocioReserva.cadastarReserva(reserva);
     }
 
-    public void buscarQuarto(int numero) throws QuartoNaoExisteException {
-        negocioQuarto.buscarQuarto(numero);
+    public Quarto buscarQuarto(int numero) throws QuartoNaoExisteException {
+        return negocioQuarto.buscarQuarto(numero);
     }
 
-    public void buscarHospede(String cpf) throws HospedeNaoExisteException{
-        negocioHospede.buscarHospede(cpf);
+    public Hospede buscarHospede(String cpf) throws HospedeNaoExisteException{
+        return negocioHospede.buscarHospede(cpf);
     }
 
-    public void buscarReserva(long id) throws ReservaNaoExisteException {
-        negocioReserva.buscarReserva(id);
+    public Reserva buscarReserva(long id) throws ReservaNaoExisteException {
+        return negocioReserva.buscarReserva(id);
     }
 
     public void alterarQuarto(int numero) throws QuartoNaoExisteException {
         negocioQuarto.alterarQuarto(numero);
     }
 
-    public void alterarHospede(String cpf) throws HospedeNaoExisteException{
-        negocioHospede.alterarHospede(cpf);
+    public void alterarHospede(Hospede hospede) throws HospedeNaoExisteException{
+        negocioHospede.alterarHospede(hospede.getCpf());
     }
 
     public void alterarReserva(Reserva reserva) throws ReservaNaoExisteException {
