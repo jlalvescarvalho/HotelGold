@@ -14,6 +14,7 @@ import negocio.execao.hospede.HospedeNaoExisteException;
 import negocio.execao.quarto.QuartoJaExisteException;
 import negocio.execao.quarto.QuartoNaoExisteException;
 import negocio.execao.quarto.QuartoOcupadoException;
+import negocio.execao.reserva.ReservaJaExisteException;
 import negocio.execao.reserva.ReservaNaoExisteException;
 
 public class Hotel {
@@ -28,9 +29,9 @@ public class Hotel {
         this.negocioHospede = new NegocioHospede();
         this.negocioReserva = new NegocioReserva();
     }
-    
-    public static Hotel getInstance(){
-        if(myself == null){
+
+    public static Hotel getInstance() {
+        if (myself == null) {
             myself = new Hotel();
         }
         return myself;
@@ -40,11 +41,11 @@ public class Hotel {
         negocioQuarto.cadastrarQuarto(quarto);
     }
 
-    public void adicionarHospede(Hospede hospede) throws HospedeJaExisteException{
+    public void adicionarHospede(Hospede hospede) throws HospedeJaExisteException {
         negocioHospede.cadastrarHospede(hospede);
     }
 
-    public void adicionarReserva(Reserva reserva) throws HospedeNaoExisteException, QuartoNaoExisteException, QuartoOcupadoException{
+    public void adicionarReserva(Reserva reserva) throws ReservaJaExisteException, HospedeNaoExisteException, QuartoNaoExisteException, QuartoOcupadoException{
         negocioReserva.cadastarReserva(reserva);
     }
 
@@ -52,7 +53,7 @@ public class Hotel {
         return negocioQuarto.buscarQuarto(numero);
     }
 
-    public Hospede buscarHospede(String cpf) throws HospedeNaoExisteException{
+    public Hospede buscarHospede(String cpf) throws HospedeNaoExisteException {
         return negocioHospede.buscarHospede(cpf);
     }
 
@@ -64,7 +65,7 @@ public class Hotel {
         negocioQuarto.alterarQuarto(numero);
     }
 
-    public void alterarHospede(Hospede hospede) throws HospedeNaoExisteException{
+    public void alterarHospede(Hospede hospede) throws HospedeNaoExisteException {
         negocioHospede.alterarHospede(hospede.getCpf());
     }
 
@@ -76,26 +77,31 @@ public class Hotel {
         negocioQuarto.removerQuarto(numero);
     }
 
-    public void removerHospede(String cpf) throws HospedeNaoExisteException{
+    public void removerHospede(String cpf) throws HospedeNaoExisteException {
         negocioHospede.removerHospede(cpf);
     }
 
     public void removerReserva(long id) throws ReservaNaoExisteException {
         negocioReserva.removerReserva(id);
     }
-    
-    public ArrayList<Hospede> listaHospedes(){
+
+    public ArrayList<Hospede> listaHospedes() {
         return negocioHospede.listaHospedes();
     }
-    public ArrayList<Quarto> listaQuartos(){
+
+    public ArrayList<Quarto> listaQuartos() {
         return negocioQuarto.recuperarTodos();
     }
-    
-    public ArrayList<TipoQuartoEnum> tiposQuartosVagos(){
+
+    public ArrayList<TipoQuartoEnum> tiposQuartosVagos() {
         return negocioQuarto.tiposQuartosVagos();
     }
-    public ArrayList<TipoReservaEnum> tiposReservas(){
+
+    public ArrayList<TipoReservaEnum> tiposReservas() {
         return negocioReserva.tiposReservas();
-        
+    }
+
+    public ArrayList<Quarto> quartosVagos() {
+        return negocioQuarto.listaQuartosVagos();
     }
 }

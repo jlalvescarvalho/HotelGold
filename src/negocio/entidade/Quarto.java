@@ -50,6 +50,6 @@ public class Quarto {
     
     @Override
     public String toString() {
-        return "Número do Quarto: " + this.numero + "; Tipo do Quarto: " + this.tipo.name();
+        return "Número: " + this.numero + "; Tipo: " + this.tipo.name();
     }
 }

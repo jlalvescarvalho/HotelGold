@@ -1,19 +1,20 @@
 package negocio.entidade;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Reserva {
     private long id;
     private Quarto quarto;
-    private Date dataEntrada;
-    private Date dataSaida;
+    private LocalDate dataEntrada;
+    private LocalDate dataSaida;
     private Hospede hospede;
     private TipoReservaEnum tipoReserva;
 
     private static int contadorId = 1;
 
-    public Reserva(Quarto quarto, Date dataEntrada, Date dataSaida, Hospede hospede, TipoReservaEnum tipoReserva) {
+    public Reserva(Quarto quarto, LocalDate dataEntrada, LocalDate dataSaida, Hospede hospede, TipoReservaEnum tipoReserva) {
         this.id = contadorId++;
         this.quarto = quarto;
         this.dataEntrada = dataEntrada;
@@ -71,19 +72,19 @@ public class Reserva {
         this.quarto = quarto;
     }
 
-    public Date getDataEntrada() {
+    public LocalDate getDataEntrada() {
         return dataEntrada;
     }
 
-    public void setDataEntrada(Date dataEntrada) {
+    public void setDataEntrada(LocalDate dataEntrada) {
         this.dataEntrada = dataEntrada;
     }
 
-    public Date getDataSaida() {
+    public LocalDate getDataSaida() {
         return dataSaida;
     }
 
-    public void setDataSaida(Date dataSaida) {
+    public void setDataSaida(LocalDate dataSaida) {
         this.dataSaida = dataSaida;
     }
 

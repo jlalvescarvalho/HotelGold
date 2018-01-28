@@ -62,4 +62,8 @@ public class NegocioQuarto {
     public ArrayList<TipoQuartoEnum> tiposQuartosVagos(){
         return repositorioQuarto.tiposQuartosDesocupados();
     }
+    
+    public ArrayList<Quarto> listaQuartosVagos(){
+        return  repositorioQuarto.quartosDesocupados();
+    }
 }

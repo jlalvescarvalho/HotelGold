@@ -19,65 +19,67 @@ public class NegocioReserva {
     private NegocioHospede negocioHospede;
     private NegocioQuarto negocioQuarto;
 
-
     public NegocioReserva() {
         this.repositorioReserva = new RepositorioReserva();
         this.negocioHospede = new NegocioHospede();
         this.negocioQuarto = new NegocioQuarto();
     }
 
-    public void cadastarReserva(Reserva reserva) throws HospedeNaoExisteException, QuartoNaoExisteException, QuartoOcupadoException{
-        Quarto  quarto = negocioQuarto.buscarQuarto(reserva.getQuarto().getNumero());
+    public void cadastarReserva(Reserva reserva) throws HospedeNaoExisteException, QuartoNaoExisteException, QuartoOcupadoException, ReservaJaExisteException {
+        Quarto quarto = negocioQuarto.buscarQuarto(reserva.getQuarto().getNumero());
         Hospede hospede = negocioHospede.buscarHospede(reserva.getHospede().getCpf());
-
-        if(quarto == null ){
+        Reserva r = repositorioReserva.recuperarReserva(reserva.getId());
+        if (r != null) {
+            throw new ReservaJaExisteException();
+        }
+        if (quarto == null) {
             throw new QuartoNaoExisteException();
-        }else if(hospede == null){
+        } else if (hospede == null) {
             throw new HospedeNaoExisteException();
-        }else if(reserva.getQuarto().getOcupado() != false){
+        } else if (reserva.getQuarto().getOcupado() != false) {
             throw new QuartoOcupadoException();
-        }else{
+        } else {
             reserva.getQuarto().setOcupado(true);
             repositorioReserva.cadastrarReserva(reserva);
         }
     }
 
-    public Reserva buscarReserva(long id) throws ReservaNaoExisteException{
+    public Reserva buscarReserva(long id) throws ReservaNaoExisteException {
         Reserva reserva = repositorioReserva.recuperarReserva(id);
 
-        if(reserva != null){
+        if (reserva != null) {
             return reserva;
-        }else{
+        } else {
             throw new ReservaNaoExisteException();
         }
 
     }
 
-    public void alterarReserva(Reserva reserva) throws ReservaNaoExisteException{
+    public void alterarReserva(Reserva reserva) throws ReservaNaoExisteException {
         Reserva r = repositorioReserva.recuperarReserva(reserva.getId());
         int indice = repositorioReserva.indiceReserva(reserva.getId());
 
-        if(r != null){
-            repositorioReserva.atualizarReserva(indice,reserva);
-        }else{
+        if (r != null) {
+            repositorioReserva.atualizarReserva(indice, reserva);
+        } else {
             throw new ReservaNaoExisteException();
         }
 
     }
 
-    public void removerReserva(long id) throws ReservaNaoExisteException{
+    public void removerReserva(long id) throws ReservaNaoExisteException {
         Reserva r = buscarReserva(id);
 
-        if(r != null){
+        if (r != null) {
             repositorioReserva.removerReserva(r);
-        }
-        else{
+        } else {
             throw new ReservaNaoExisteException();
         }
     }
-    public ArrayList<TipoReservaEnum> tiposReservas(){
+
+    public ArrayList<TipoReservaEnum> tiposReservas() {
         return repositorioReserva.tiposReservas();
-        
-        }
-    
+
+    }
+
 }

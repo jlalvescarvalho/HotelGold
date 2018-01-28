@@ -2,6 +2,7 @@ package gui.controller;
 
 import fachada.Hotel;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -14,9 +15,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
 import negocio.entidade.Hospede;
+import negocio.entidade.Quarto;
+import negocio.entidade.Reserva;
 import negocio.entidade.TipoQuartoEnum;
 import negocio.entidade.TipoReservaEnum;
 import negocio.execao.hospede.HospedeNaoExisteException;
+import negocio.execao.quarto.QuartoNaoExisteException;
+import negocio.execao.quarto.QuartoOcupadoException;
+import negocio.execao.reserva.ReservaJaExisteException;
 
 public class TelaReservaController implements Initializable {
     
@@ -44,9 +50,9 @@ public class TelaReservaController implements Initializable {
     @FXML
     private TextField idRemover;
     @FXML
-    private ComboBox<TipoQuartoEnum> quartoCadastrar = new ComboBox<>();
+    private ComboBox<Quarto> quartoCadastrar = new ComboBox<>();
     @FXML
-    private ComboBox<TipoQuartoEnum> quartoAlterar = new ComboBox<>();
+    private ComboBox<Quarto> quartoAlterar = new ComboBox<>();
     @FXML
     private ComboBox<TipoReservaEnum> tipoReservaCadastrar = new ComboBox<>();
     @FXML
@@ -60,16 +66,31 @@ public class TelaReservaController implements Initializable {
     
     @FXML
     protected void cadastrarReserva(){
-           
+        try{
+            Quarto q = quartoCadastrar.getValue();
+            LocalDate d1 = dataEntradaCadastrar.getValue();
+            LocalDate d2 = dataSaidaCadastrar.getValue();
+            Reserva reserva = new Reserva(q,d1,d2,hospede, tipoReservaCadastrar.getValue());
+            Hotel.getInstance().adicionarReserva(reserva);
+        }catch(ReservaJaExisteException re){
+            JOptionPane.showMessageDialog(null, re.getMessage());
+        }catch(HospedeNaoExisteException hne){
+            JOptionPane.showMessageDialog(null, hne.getMessage());
+        }catch(QuartoOcupadoException qo){
+            JOptionPane.showMessageDialog(null, qo.getMessage());
+        }catch(QuartoNaoExisteException qne){
+            JOptionPane.showMessageDialog(null, qne.getMessage());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
     @FXML
     protected void preencherTipoQuarto(){
         preencherTipoReserva();
-        ArrayList<TipoQuartoEnum> tipoQuarto = Hotel.getInstance().tiposQuartosVagos();
+        ArrayList<Quarto> tipoQuarto = Hotel.getInstance().quartosVagos();
         
-        ObservableList<TipoQuartoEnum> itens = FXCollections.observableArrayList(tipoQuarto);
-        quartoCadastrar.setItems(itens);
-      
+        ObservableList<Quarto> itens = FXCollections.observableArrayList(tipoQuarto);
+        quartoCadastrar.setItems(itens);   
     }
     
     @FXML
@@ -88,9 +109,9 @@ public class TelaReservaController implements Initializable {
         ObservableList<TipoReservaEnum> itens = FXCollections.observableArrayList(tipoReserva);
         tipoReservaCadastrar.setItems(itens);
     }
-    
+  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //TODO
     }     
 }

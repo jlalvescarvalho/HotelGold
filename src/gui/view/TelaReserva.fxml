@@ -16,15 +16,15 @@
                   <Label layoutX="8.0" layoutY="185.0" text="Tipo quarto:" />
                   <Label layoutX="11.0" layoutY="109.0" text="Cpf:" />
                   <TextField fx:id="cpfCadastrar" layoutX="98.0" layoutY="104.0" />
-                  <Button layoutX="69.0" layoutY="465.0" mnemonicParsing="false" text="Cadastrar" />
-                  <DatePicker layoutX="14.0" layoutY="311.0" promptText="Data de entrada" />
-                  <DatePicker layoutX="285.0" layoutY="311.0" promptText="Data de saída" />
+                  <Button layoutX="69.0" layoutY="465.0" mnemonicParsing="false" onAction="#cadastrarReserva" text="Cadastrar" />
+                  <DatePicker fx:id="dataEntradaCadastrar" layoutX="14.0" layoutY="311.0" promptText="Data de entrada" />
+                  <DatePicker fx:id="dataSaidaCadastrar" layoutX="285.0" layoutY="311.0" promptText="Data de saída" />
                   <Button layoutX="311.0" layoutY="104.0" mnemonicParsing="false" onAction="#buscarCadastrar" text="Buscar" />
                   <Separator layoutX="2.0" layoutY="155.0" prefHeight="14.0" prefWidth="1041.0" />
-                  <ComboBox fx:id="quartoCadastrar" layoutX="98.0" layoutY="180.0" prefHeight="31.0" prefWidth="210.0" promptText="Selecione o tipo" />
+                  <ComboBox fx:id="quartoCadastrar" layoutX="98.0" layoutY="180.0" prefHeight="31.0" prefWidth="264.0" promptText="Selecione o tipo" />
                   <Label fx:id="nomeCadastrar" layoutX="98.0" layoutY="38.0" prefHeight="33.0" prefWidth="929.0" />
-                  <Label layoutX="311.0" layoutY="185.0" text="Tipo reserva:" />
-                  <ComboBox fx:id="tipoReservaCadastrar" layoutX="404.0" layoutY="180.0" prefHeight="31.0" prefWidth="234.0" promptText="Selecione o tipo" />
+                  <Label layoutX="419.0" layoutY="185.0" text="Tipo reserva:" />
+                  <ComboBox fx:id="tipoReservaCadastrar" layoutX="511.0" layoutY="180.0" prefHeight="31.0" prefWidth="234.0" promptText="Selecione o tipo" />
                </children></AnchorPane>
       </content>
     </Tab>
