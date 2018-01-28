@@ -123,10 +123,7 @@ public class TelaHospedeController implements Initializable {
         }
     }
     
-   // protected Hospede buscar(String cpf) throws HospedeNaoExisteException{
- //       return Hotel.getInstance().buscarHospede(cpf);
-  //  }
-    
+    @FXML
     protected void removerHospede(){
         try{
             hospede = Hotel.getInstance().buscarHospede(cpfRemover.getText());
