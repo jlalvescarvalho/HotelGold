@@ -6,23 +6,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="1041.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="1041.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.TelaReservaController">
   <tabs>
     <Tab text="Cadastrar">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="1052.0">
                <children>
                   <Label layoutX="11.0" layoutY="44.0" text="Nome:" />
-                  <Label layoutX="8.0" layoutY="185.0" text="Tipo quarto" />
+                  <Label layoutX="8.0" layoutY="185.0" text="Tipo quarto:" />
                   <Label layoutX="11.0" layoutY="109.0" text="Cpf:" />
-                  <TextField layoutX="98.0" layoutY="39.0" prefHeight="31.0" prefWidth="867.0" />
-                  <TextField layoutX="98.0" layoutY="104.0" />
+                  <TextField fx:id="cpfCadastrar" layoutX="98.0" layoutY="104.0" />
                   <Button layoutX="69.0" layoutY="465.0" mnemonicParsing="false" text="Cadastrar" />
                   <DatePicker layoutX="14.0" layoutY="311.0" promptText="Data de entrada" />
                   <DatePicker layoutX="285.0" layoutY="311.0" promptText="Data de saída" />
-                  <Button layoutX="311.0" layoutY="104.0" mnemonicParsing="false" text="Buscar" />
+                  <Button layoutX="311.0" layoutY="104.0" mnemonicParsing="false" onAction="#buscarCadastrar" text="Buscar" />
                   <Separator layoutX="2.0" layoutY="155.0" prefHeight="14.0" prefWidth="1041.0" />
-                  <ComboBox layoutX="98.0" layoutY="180.0" prefWidth="150.0" />
+                  <ComboBox layoutX="98.0" layoutY="180.0" prefHeight="31.0" prefWidth="210.0" promptText="Selecione o tipo" />
+                  <Label fx:id="nomeCadastrar" layoutX="98.0" layoutY="38.0" prefHeight="33.0" prefWidth="929.0" />
+                  <Label layoutX="311.0" layoutY="185.0" text="Tipo reserva:" />
+                  <ComboBox layoutX="404.0" layoutY="180.0" prefHeight="31.0" prefWidth="234.0" promptText="Selecione o tipo" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -32,7 +34,7 @@
                <children>
                   <Label layoutX="8.0" layoutY="110.0" text="Tipo quarto:" />
                   <Button layoutX="39.0" layoutY="311.0" mnemonicParsing="false" text="Alterar" />
-                  <ComboBox layoutX="129.0" layoutY="105.0" prefWidth="150.0" />
+                  <ComboBox layoutX="129.0" layoutY="105.0" prefHeight="31.0" prefWidth="220.0" promptText="Selecione o tipo" />
                   <DatePicker layoutX="31.0" layoutY="198.0" promptText="Data de saída" />
                   <Label layoutX="14.0" layoutY="30.0" text="Id:" />
                   <TextField layoutX="56.0" layoutY="25.0" prefHeight="31.0" prefWidth="84.0" />
@@ -51,9 +53,9 @@
                   <Button layoutX="175.0" layoutY="40.0" mnemonicParsing="false" text="Buscar" />
                   <Separator layoutX="-1.0" layoutY="253.0" prefHeight="3.0" prefWidth="1041.0" />
                   <Label layoutX="14.0" layoutY="284.0" text="Tipo quarto:" />
-                  <Label layoutX="95.0" layoutY="102.0" prefHeight="42.0" prefWidth="934.0" />
-                  <Label layoutX="94.0" layoutY="175.0" prefHeight="37.0" prefWidth="290.0" />
-                  <Label layoutX="112.0" layoutY="275.0" prefHeight="40.0" prefWidth="255.0" />
+                  <Label fx:id="nomeBuscar" layoutX="95.0" layoutY="102.0" prefHeight="42.0" prefWidth="934.0" />
+                  <Label fx:id="cpfBuscar" layoutX="94.0" layoutY="175.0" prefHeight="37.0" prefWidth="290.0" />
+                  <Label fx:id="quartoBuscar" layoutX="112.0" layoutY="275.0" prefHeight="40.0" prefWidth="255.0" />
                </children>
             </AnchorPane>
         </content>
@@ -68,10 +70,10 @@
                   <TextField layoutX="110.0" layoutY="31.0" prefHeight="31.0" prefWidth="46.0" />
                   <Button layoutX="172.0" layoutY="31.0" mnemonicParsing="false" text="Buscar" />
                   <Button layoutX="110.0" layoutY="311.0" mnemonicParsing="false" text="Remover" />
-                  <Label layoutX="110.0" layoutY="96.0" prefHeight="42.0" prefWidth="923.0" />
-                  <Label layoutX="110.0" layoutY="173.0" prefHeight="38.0" prefWidth="242.0" />
+                  <Label fx:id="nomeRemover" layoutX="110.0" layoutY="96.0" prefHeight="42.0" prefWidth="923.0" />
+                  <Label fx:id="cpfRemover" layoutX="110.0" layoutY="173.0" prefHeight="38.0" prefWidth="242.0" />
                   <Label layoutX="451.0" layoutY="181.0" text="Tipo quarto:" />
-                  <Label layoutX="565.0" layoutY="177.0" prefHeight="30.0" prefWidth="288.0" />
+                  <Label fx:id="quartoRemover" layoutX="565.0" layoutY="177.0" prefHeight="30.0" prefWidth="288.0" />
                </children>
             </AnchorPane>
         </content>
