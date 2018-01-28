@@ -8,7 +8,7 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="1041.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.TelaReservaController">
   <tabs>
-    <Tab text="Cadastrar">
+    <Tab onSelectionChanged="#preencherTipoQuarto" text="Cadastrar">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="1052.0">
                <children>
@@ -21,7 +21,7 @@
                   <DatePicker layoutX="285.0" layoutY="311.0" promptText="Data de saída" />
                   <Button layoutX="311.0" layoutY="104.0" mnemonicParsing="false" onAction="#buscarCadastrar" text="Buscar" />
                   <Separator layoutX="2.0" layoutY="155.0" prefHeight="14.0" prefWidth="1041.0" />
-                  <ComboBox layoutX="98.0" layoutY="180.0" prefHeight="31.0" prefWidth="210.0" promptText="Selecione o tipo" />
+                  <ComboBox fx:id="quartoCadastrar" layoutX="98.0" layoutY="180.0" prefHeight="31.0" prefWidth="210.0" promptText="Selecione o tipo" />
                   <Label fx:id="nomeCadastrar" layoutX="98.0" layoutY="38.0" prefHeight="33.0" prefWidth="929.0" />
                   <Label layoutX="311.0" layoutY="185.0" text="Tipo reserva:" />
                   <ComboBox layoutX="404.0" layoutY="180.0" prefHeight="31.0" prefWidth="234.0" promptText="Selecione o tipo" />

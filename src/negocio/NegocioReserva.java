@@ -1,8 +1,10 @@
 package negocio;
 
+import java.util.ArrayList;
 import negocio.entidade.Hospede;
 import negocio.entidade.Quarto;
 import negocio.entidade.Reserva;
+import negocio.entidade.TipoQuartoEnum;
 import negocio.execao.hospede.HospedeNaoExisteException;
 import negocio.execao.quarto.QuartoNaoExisteException;
 import negocio.execao.quarto.QuartoOcupadoException;
@@ -71,7 +73,6 @@ public class NegocioReserva {
         else{
             throw new ReservaNaoExisteException();
         }
-
     }
-
+    
 }

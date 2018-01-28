@@ -7,6 +7,7 @@ import negocio.NegocioReserva;
 import negocio.entidade.Hospede;
 import negocio.entidade.Quarto;
 import negocio.entidade.Reserva;
+import negocio.entidade.TipoQuartoEnum;
 import negocio.execao.hospede.HospedeJaExisteException;
 import negocio.execao.hospede.HospedeNaoExisteException;
 import negocio.execao.quarto.QuartoJaExisteException;
@@ -88,5 +89,8 @@ public class Hotel {
     public ArrayList<Quarto> listaQuartos(){
         return negocioQuarto.recuperarTodos();
     }
-        
+    
+    public ArrayList<TipoQuartoEnum> tiposQuartosVagos(){
+        return negocioQuarto.tiposQuartosVagos();
+    }
 }
