@@ -25,6 +25,8 @@ public class TelaInicialController implements Initializable {
     
     @FXML
     private AnchorPane pane;
+    
+    
 
     @FXML
     public void abrirTelaHospede() {

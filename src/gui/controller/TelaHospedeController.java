@@ -19,6 +19,7 @@ public class TelaHospedeController implements Initializable {
     private TextField txtCpf;
     @FXML
     private TextField txtTelefone;
+   
 
     @FXML
     protected void cadastrarHospede(ActionEvent e) {
@@ -35,6 +36,8 @@ public class TelaHospedeController implements Initializable {
             JOptionPane.showMessageDialog(null, he.getMessage());
         }
     }
+    
+   
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

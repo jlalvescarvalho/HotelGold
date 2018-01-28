@@ -9,12 +9,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application{
     
-    public static Stage stage;
+    private Stage stage;
+    private Parent root;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        stage = primaryStage;
-        Parent root;
+        stage = primaryStage;     
         FXMLLoader load = new FXMLLoader();      
         load.setLocation(getClass().getResource("/gui/view/TelaInicial.fxml"));
         root = (AnchorPane) load.load();
