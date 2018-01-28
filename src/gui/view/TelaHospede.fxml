@@ -68,11 +68,11 @@
             </AnchorPane>
         </content>
       </Tab>
-      <Tab text="Listar hóspedes">
+      <Tab onSelectionChanged="#listarHospedes" text="Listar hóspedes">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ListView layoutX="4.0" layoutY="4.0" prefHeight="617.0" prefWidth="945.0" />
+                  <ListView fx:id="listaHospedes" layoutX="4.0" layoutY="4.0" prefHeight="617.0" prefWidth="945.0" />
                </children>
             </AnchorPane>
         </content>

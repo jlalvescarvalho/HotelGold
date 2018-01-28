@@ -1,5 +1,6 @@
 package negocio;
 
+import java.util.ArrayList;
 import negocio.entidade.Hospede;
 import negocio.execao.hospede.HospedeJaExisteException;
 import negocio.execao.hospede.HospedeNaoExisteException;
@@ -53,5 +54,9 @@ public class NegocioHospede {
         else{
             throw new HospedeNaoExisteException();
         }
+    }
+    
+    public ArrayList<Hospede> listaHospedes(){
+        return repositorio.recuperarTodos();
     }
 }

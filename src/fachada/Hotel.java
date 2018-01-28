@@ -1,5 +1,6 @@
 package fachada;
 
+import java.util.ArrayList;
 import negocio.NegocioHospede;
 import negocio.NegocioQuarto;
 import negocio.NegocioReserva;
@@ -80,4 +81,9 @@ public class Hotel {
     public void removerReserva(long id) throws ReservaNaoExisteException {
         negocioReserva.removerReserva(id);
     }
+    
+    public ArrayList<Hospede> listaHospedes(){
+        return negocioHospede.listaHospedes();
+    }
+        
 }

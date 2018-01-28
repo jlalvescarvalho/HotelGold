@@ -3,7 +3,11 @@ package gui.controller;
 import fachada.Hotel;
 import negocio.entidade.Hospede;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Observable;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -58,6 +63,8 @@ public class TelaHospedeController implements Initializable {
     private Button btBuscarRemover;
     @FXML
     private Button btRemover;
+    @FXML
+    private ListView<String> listaHospedes = new ListView<>();
     
     @FXML
     protected void cadastrarHospede() {
@@ -133,6 +140,19 @@ public class TelaHospedeController implements Initializable {
             JOptionPane.showMessageDialog(null, e.getMessage());
             
         }
+    }
+    
+    @FXML
+    protected void listarHospedes(){
+        ArrayList<String> apresentacao = new ArrayList<>();
+        ArrayList<Hospede> hospedes = Hotel.getInstance().listaHospedes();
+        
+        for(Hospede h: hospedes){
+            apresentacao.add(h.toString());
+        }
+        
+        ObservableList<String> itens = FXCollections.observableArrayList(apresentacao);
+        listaHospedes.setItems(itens);
     }
 
 
