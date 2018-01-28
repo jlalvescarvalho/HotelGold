@@ -1,10 +1,10 @@
-package gui.controllers;
+package gui.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
-public class TelaReservaController implements Initializable {
+public class TelaQuartoController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
