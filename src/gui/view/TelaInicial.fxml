@@ -9,7 +9,7 @@
 <AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="542.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.TelaInicialController">
    <children>
       <Button layoutX="200.0" layoutY="67.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="123.0" text="Reserva" />
-      <Button layoutX="200.0" layoutY="138.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="123.0" text="Hospede" />
+      <Button layoutX="200.0" layoutY="138.0" mnemonicParsing="false" onMouseClicked="#abrirTelaHospede" prefHeight="53.0" prefWidth="123.0" text="Hospede" />
       <Button layoutX="200.0" layoutY="207.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="123.0" text="Quarto" />
    </children>
 </AnchorPane>
