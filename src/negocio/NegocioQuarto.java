@@ -2,6 +2,7 @@ package negocio;
 
 import java.util.ArrayList;
 import negocio.entidade.Quarto;
+import negocio.entidade.TipoQuartoEnum;
 import negocio.execao.quarto.QuartoJaExisteException;
 import negocio.execao.quarto.QuartoNaoExisteException;
 import repositorio.RepositorioQuarto;
@@ -55,5 +56,9 @@ public class NegocioQuarto {
 
     public ArrayList<Quarto> recuperarTodos() {
         return repositorioQuarto.recuperarTodos();
+    }
+    
+    public ArrayList<TipoQuartoEnum> tiposQuartosVagos(){
+        return repositorioQuarto.tiposQuartosDesocupados();
     }
 }
