@@ -6,10 +6,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="542.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.TelaInicialController">
+<AnchorPane id="AnchorPane" prefHeight="762.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.TelaInicialController">
    <children>
-      <Button layoutX="200.0" layoutY="67.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="123.0" text="Reserva" />
-      <Button layoutX="200.0" layoutY="138.0" mnemonicParsing="false" onMouseClicked="#abrirTelaHospede" prefHeight="53.0" prefWidth="123.0" text="Hospede" />
-      <Button layoutX="200.0" layoutY="207.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="123.0" text="Quarto" />
+      <AnchorPane fx:id="pane" layoutX="-5.0" layoutY="-5.0" prefHeight="762.0" prefWidth="1023.0">
+         <children>
+            <Button fx:id="btHospede" layoutX="408.0" layoutY="91.0" mnemonicParsing="false" onAction="#abrirTelaHospede" onMouseClicked="#abrirTelaHospede" prefHeight="53.0" prefWidth="123.0" text="Hospede" />
+            <Button fx:id="btReserva" layoutX="408.0" layoutY="243.0" mnemonicParsing="false" onAction="#abrirTelaReserva" prefHeight="53.0" prefWidth="123.0" text="Reserva" />
+            <Button fx:id="btQuarto" layoutX="408.0" layoutY="409.0" mnemonicParsing="false" onAction="#abrirTelaQuarto" prefHeight="53.0" prefWidth="123.0" text="Quarto" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
