@@ -6,15 +6,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="641.0" prefWidth="1019.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="641.0" prefWidth="1019.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.TelaQuartoController">
   <tabs>
-    <Tab text="Cadastrar">
+    <Tab onSelectionChanged="#preencherComboBox" text="Cadastrar">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <Label layoutX="14.0" layoutY="48.0" text="Tipo quarto:" />
-                  <ComboBox layoutX="129.0" layoutY="41.0" prefHeight="35.0" prefWidth="184.0" />
-                  <Button layoutX="180.0" layoutY="144.0" mnemonicParsing="false" text="Cadastrar" />
+                  <ComboBox fx:id="comboBox" layoutX="129.0" layoutY="41.0" prefHeight="35.0" prefWidth="184.0" />
+                  <Button fx:id="btCadastrar" layoutX="180.0" layoutY="144.0" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
                </children></AnchorPane>
       </content>
     </Tab>
@@ -54,6 +54,15 @@
                   <Label layoutX="14.0" layoutY="141.0" text="Tipo quarto:" />
                   <Label layoutX="114.0" layoutY="137.0" prefHeight="29.0" prefWidth="187.0" />
                   <Button layoutX="114.0" layoutY="202.0" mnemonicParsing="false" text="Remover" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab onSelectionChanged="#ListarQuartos" text="Lista Quartos">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ListView fx:id="listaQuarto" layoutX="5.0" layoutY="6.0" prefHeight="602.0" prefWidth="1007.0" />
                </children>
             </AnchorPane>
         </content>

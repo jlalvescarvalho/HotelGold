@@ -1,5 +1,6 @@
 package negocio;
 
+import java.util.ArrayList;
 import negocio.entidade.Quarto;
 import negocio.execao.quarto.QuartoJaExisteException;
 import negocio.execao.quarto.QuartoNaoExisteException;
@@ -51,5 +52,9 @@ public class NegocioQuarto {
         }else{
             throw new QuartoNaoExisteException();
         }
+    }
+
+    public ArrayList<Quarto> recuperarTodos() {
+        return repositorioQuarto.recuperarTodos();
     }
 }

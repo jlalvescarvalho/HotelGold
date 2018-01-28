@@ -85,5 +85,8 @@ public class Hotel {
     public ArrayList<Hospede> listaHospedes(){
         return negocioHospede.listaHospedes();
     }
+    public ArrayList<Quarto> listaQuartos(){
+        return negocioQuarto.recuperarTodos();
+    }
         
 }
