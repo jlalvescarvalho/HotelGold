@@ -58,8 +58,8 @@ public class Hotel {
         return negocioReserva.buscarReserva(id);
     }
 
-    public void alterarQuarto(int numero) throws QuartoNaoExisteException {
-        negocioQuarto.alterarQuarto(numero);
+    public void alterarQuarto(Quarto q) throws QuartoNaoExisteException {
+        negocioQuarto.alterarQuarto(q);
     }
 
     public void alterarHospede(Hospede hospede) throws HospedeNaoExisteException{

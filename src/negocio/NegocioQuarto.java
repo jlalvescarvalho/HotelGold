@@ -23,11 +23,10 @@ public class NegocioQuarto {
         }
     }
 
-    public void alterarQuarto(int numero) throws QuartoNaoExisteException{
-        Quarto q = repositorioQuarto.recuperarQuarto(numero);
-        int indice = repositorioQuarto.indiceQuarto(numero);
+    public void alterarQuarto(Quarto q) throws QuartoNaoExisteException{
+        int indice = repositorioQuarto.indiceQuarto(q.getNumero());
 
-        if(q != null && q.getOcupado() == false){
+        if(q.getOcupado() == false){
             repositorioQuarto.atualizarQuarto(indice,q);
         }else{
             throw new QuartoNaoExisteException();
