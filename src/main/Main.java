@@ -8,16 +8,19 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Main extends Application{
+    
+    public static Stage stage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        stage = primaryStage;
         Parent root;
         FXMLLoader load = new FXMLLoader();      
         load.setLocation(getClass().getResource("/gui/view/TelaInicial.fxml"));
         root = (AnchorPane) load.load();
-        primaryStage.setTitle("Hotel Gold");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        stage.setTitle("Hotel Gold");
+        stage.setScene(new Scene(root));
+        stage.show();
     }
     
     public static void main(String[] args) {
