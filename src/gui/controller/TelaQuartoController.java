@@ -24,17 +24,33 @@ import negocio.execao.quarto.QuartoNaoExisteException;
 public class TelaQuartoController implements Initializable {
     
     @FXML
-    private ComboBox<TipoQuartoEnum> comboBox = new ComboBox<TipoQuartoEnum>();
+    private ComboBox<TipoQuartoEnum> comboBox = new ComboBox<>();
     @FXML
     private Button btCadastrar;
     @FXML
     private Button btBuscar;
     @FXML
+    private Button btAlterar;
+    @FXML
+    private Button btBuscarAlterar;
+    @FXML
+    private Button btBuscarRemover;
+    @FXML
+    private Button btRemover;
+    @FXML
     private ListView<String> listaQuarto = new ListView<>();
     @FXML
-    private TextField txtNumeroQuarto;
+    private TextField txtNumeroBuscar;
+    @FXML
+    private TextField txtNumeroAlterar;
+    @FXML
+    private TextField txtNumeroRemover;
     @FXML
     private Label labelTipoQuarto;
+    @FXML
+    private Label labelTipoRemover;
+    @FXML
+    private ComboBox<TipoQuartoEnum> comboBoxAlterar = new ComboBox<>();
     
     ArrayList<TipoQuartoEnum> tipoQuarto = new ArrayList<>();
     
@@ -61,6 +77,7 @@ public class TelaQuartoController implements Initializable {
         
         ObservableList<TipoQuartoEnum> itens = FXCollections.observableArrayList(tipoQuarto);
         comboBox.setItems(itens);
+        comboBoxAlterar.setItems(itens);
     }
     
     @FXML
@@ -79,8 +96,51 @@ public class TelaQuartoController implements Initializable {
     @FXML
     protected void bucarQuarto(){
         try {
-            quarto = Hotel.getInstance().buscarQuarto(Integer.parseInt(txtNumeroQuarto.getText()));
+            quarto = Hotel.getInstance().buscarQuarto(Integer.parseInt(txtNumeroBuscar.getText()));
             labelTipoQuarto.setText(quarto.getTipo().name());
+        } catch (QuartoNaoExisteException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+    @FXML
+    protected void buscarQuartoAlterar(){
+        try {
+            quarto = Hotel.getInstance().buscarQuarto(Integer.parseInt(txtNumeroAlterar.getText()));
+            preencherComboBox();
+            comboBoxAlterar.setValue(quarto.getTipo());
+            
+        } catch (QuartoNaoExisteException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+    @FXML
+    protected void alterarQuarto(){
+        try {
+            quarto = Hotel.getInstance().buscarQuarto(Integer.parseInt(txtNumeroAlterar.getText()));
+            TipoQuartoEnum t = comboBoxAlterar.getValue();
+            quarto.setTipo(t);
+            Hotel.getInstance().alterarQuarto(quarto);
+            
+        } catch (QuartoNaoExisteException ex) {
+            Logger.getLogger(TelaQuartoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    @FXML
+    protected void buscarRemover(){
+        try {
+            quarto = Hotel.getInstance().buscarQuarto(Integer.parseInt(txtNumeroRemover.getText()));
+            labelTipoRemover.setText(quarto.getTipo().name());
+            
+        } catch (QuartoNaoExisteException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+    @FXML
+    protected void remover(){
+        try {
+            Hotel.getInstance().removerQuarto(Integer.parseInt(txtNumeroRemover.getText()));
         } catch (QuartoNaoExisteException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
