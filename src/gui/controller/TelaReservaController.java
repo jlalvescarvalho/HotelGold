@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
 import negocio.entidade.Hospede;
 import negocio.entidade.TipoQuartoEnum;
+import negocio.entidade.TipoReservaEnum;
 import negocio.execao.hospede.HospedeNaoExisteException;
 
 public class TelaReservaController implements Initializable {
@@ -43,9 +44,13 @@ public class TelaReservaController implements Initializable {
     @FXML
     private TextField idRemover;
     @FXML
-    private ComboBox<TipoQuartoEnum> quartoCadastrar = new ComboBox<TipoQuartoEnum>();
+    private ComboBox<TipoQuartoEnum> quartoCadastrar = new ComboBox<>();
     @FXML
-    private ComboBox<String> quartoAlterar;
+    private ComboBox<TipoQuartoEnum> quartoAlterar = new ComboBox<>();
+    @FXML
+    private ComboBox<TipoReservaEnum> tipoReservaCadastrar = new ComboBox<>();
+    @FXML
+    private ComboBox<TipoReservaEnum> tipoReservaAlterar = new ComboBox<>();
     @FXML
     private DatePicker dataSaidaCadastrar;
     @FXML
@@ -59,11 +64,12 @@ public class TelaReservaController implements Initializable {
     }
     @FXML
     protected void preencherTipoQuarto(){
-        
+        preencherTipoReserva();
         ArrayList<TipoQuartoEnum> tipoQuarto = Hotel.getInstance().tiposQuartosVagos();
         
         ObservableList<TipoQuartoEnum> itens = FXCollections.observableArrayList(tipoQuarto);
         quartoCadastrar.setItems(itens);
+      
     }
     
     @FXML
@@ -75,6 +81,12 @@ public class TelaReservaController implements Initializable {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         
+    }
+    protected void preencherTipoReserva(){
+        ArrayList<TipoReservaEnum> tipoReserva = Hotel.getInstance().tiposReservas();
+        
+        ObservableList<TipoReservaEnum> itens = FXCollections.observableArrayList(tipoReserva);
+        tipoReservaCadastrar.setItems(itens);
     }
     
     @Override

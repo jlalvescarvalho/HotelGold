@@ -5,6 +5,7 @@ import negocio.entidade.Hospede;
 import negocio.entidade.Quarto;
 import negocio.entidade.Reserva;
 import negocio.entidade.TipoQuartoEnum;
+import negocio.entidade.TipoReservaEnum;
 import negocio.execao.hospede.HospedeNaoExisteException;
 import negocio.execao.quarto.QuartoNaoExisteException;
 import negocio.execao.quarto.QuartoOcupadoException;
@@ -74,5 +75,9 @@ public class NegocioReserva {
             throw new ReservaNaoExisteException();
         }
     }
+    public ArrayList<TipoReservaEnum> tiposReservas(){
+        return repositorioReserva.tiposReservas();
+        
+        }
     
 }

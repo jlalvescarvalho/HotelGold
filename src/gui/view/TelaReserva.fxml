@@ -24,7 +24,7 @@
                   <ComboBox fx:id="quartoCadastrar" layoutX="98.0" layoutY="180.0" prefHeight="31.0" prefWidth="210.0" promptText="Selecione o tipo" />
                   <Label fx:id="nomeCadastrar" layoutX="98.0" layoutY="38.0" prefHeight="33.0" prefWidth="929.0" />
                   <Label layoutX="311.0" layoutY="185.0" text="Tipo reserva:" />
-                  <ComboBox layoutX="404.0" layoutY="180.0" prefHeight="31.0" prefWidth="234.0" promptText="Selecione o tipo" />
+                  <ComboBox fx:id="tipoReservaCadastrar" layoutX="404.0" layoutY="180.0" prefHeight="31.0" prefWidth="234.0" promptText="Selecione o tipo" />
                </children></AnchorPane>
       </content>
     </Tab>

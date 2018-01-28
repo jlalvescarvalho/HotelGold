@@ -3,6 +3,7 @@ package repositorio;
 import negocio.entidade.Reserva;
 
 import java.util.ArrayList;
+import negocio.entidade.TipoReservaEnum;
 
 public class RepositorioReserva {
     private ArrayList<Reserva> listaReservas;
@@ -46,4 +47,13 @@ public class RepositorioReserva {
         }
         return -1;
     }
+    
+    public ArrayList<TipoReservaEnum> tiposReservas(){
+        ArrayList<TipoReservaEnum> tipos = new ArrayList<>();
+        tipos.add(TipoReservaEnum.CafeDaManha);
+        tipos.add(TipoReservaEnum.MeiaPensao);
+        tipos.add(TipoReservaEnum.PensaoCompleta);
+        tipos.add(TipoReservaEnum.SemRefeicaoInclusa);
+        return tipos;
+        }
 }
