@@ -12,11 +12,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
 import negocio.entidade.Quarto;
 import negocio.entidade.TipoQuartoEnum;
 import negocio.execao.quarto.QuartoJaExisteException;
+import negocio.execao.quarto.QuartoNaoExisteException;
 
 public class TelaQuartoController implements Initializable {
     
@@ -25,9 +28,17 @@ public class TelaQuartoController implements Initializable {
     @FXML
     private Button btCadastrar;
     @FXML
+    private Button btBuscar;
+    @FXML
     private ListView<String> listaQuarto = new ListView<>();
+    @FXML
+    private TextField txtNumeroQuarto;
+    @FXML
+    private Label labelTipoQuarto;
     
     ArrayList<TipoQuartoEnum> tipoQuarto = new ArrayList<>();
+    
+    Quarto quarto;
     
     @FXML
     protected void cadastrar(){
@@ -65,6 +76,15 @@ public class TelaQuartoController implements Initializable {
         listaQuarto.setItems(itens);
     }
     
+    @FXML
+    protected void bucarQuarto(){
+        try {
+            quarto = Hotel.getInstance().buscarQuarto(Integer.parseInt(txtNumeroQuarto.getText()));
+            labelTipoQuarto.setText(quarto.getTipo().name());
+        } catch (QuartoNaoExisteException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
