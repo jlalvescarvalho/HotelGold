@@ -43,7 +43,7 @@
                   <Label layoutX="10.0" layoutY="257.0" text="Lista consumo:" />
                   <Label layoutX="442.0" layoutY="257.0" text="Item a ser removido:" />
                   <TextField fx:id="idRemoverConsumo" layoutX="99.0" layoutY="25.0" prefHeight="31.0" prefWidth="62.0" />
-                  <Button layoutX="480.0" layoutY="384.0" mnemonicParsing="false" text="Remover" />
+                  <Button layoutX="480.0" layoutY="384.0" mnemonicParsing="false" onAction="#removerConsumo" text="Remover" />
                </children></AnchorPane>
       </content>
     </Tab>

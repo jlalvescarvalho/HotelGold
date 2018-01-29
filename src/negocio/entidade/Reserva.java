@@ -103,8 +103,8 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return "Hospede: "+this.hospede.getNome() + " Quarto: "+this.quarto.getTipo().name()+" Data Entrada: "+this.dataEntrada+" Data Saida: "+
-                this.dataSaida+" Tipo Reserva: "+this.tipoReserva.name();
+        return "Id: " +this.id+" | Hospede: "+this.hospede.getNome() + " | Quarto: "+this.quarto.getTipo().name()+" | Data Entrada: "+this.dataEntrada+" | Data Saida: "+
+                this.dataSaida+" | Tipo Reserva: "+this.tipoReserva.name();
     }
     
     
