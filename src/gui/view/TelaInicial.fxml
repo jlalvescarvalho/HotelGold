@@ -12,5 +12,6 @@
       <Button fx:id="btHospede" layoutX="14.0" mnemonicParsing="false" onAction="#abrirTelaHospede" onMouseClicked="#abrirTelaHospede" prefHeight="37.0" prefWidth="123.0" text="Hospede" />
       <Button fx:id="btReserva" layoutX="174.0" mnemonicParsing="false" onAction="#abrirTelaReserva" prefHeight="37.0" prefWidth="123.0" text="Reserva" />
       <Button fx:id="btQuarto" layoutX="336.0" mnemonicParsing="false" onAction="#abrirTelaQuarto" prefHeight="37.0" prefWidth="135.0" text="Quarto" />
+      <Button layoutX="505.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="135.0" text="Consumo" />
    </children>
 </AnchorPane>
