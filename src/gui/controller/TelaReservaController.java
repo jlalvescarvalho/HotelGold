@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
 import negocio.entidade.Hospede;
 import negocio.entidade.Quarto;
 import negocio.entidade.Reserva;
-import negocio.entidade.TipoQuartoEnum;
 import negocio.entidade.TipoReservaEnum;
 import negocio.execao.hospede.HospedeNaoExisteException;
 import negocio.execao.quarto.QuartoNaoExisteException;
@@ -68,7 +67,6 @@ public class TelaReservaController implements Initializable {
     private DatePicker dataSaidaAlterar;
     @FXML
     private ListView<String> listaReservas = new ListView<>();
-   
 
     @FXML
     protected void cadastrarReserva() {
@@ -99,7 +97,7 @@ public class TelaReservaController implements Initializable {
         ObservableList<Quarto> itens = FXCollections.observableArrayList(tipoQuarto);
         quartoCadastrar.setItems(itens);
         quartoAlterar.setItems(itens);
-        
+
     }
 
     @FXML
@@ -147,18 +145,57 @@ public class TelaReservaController implements Initializable {
         }
 
     }
-    
+
     @FXML
     protected void alterarReserva() {
         try {
             reserva.setDataSaida(dataSaidaAlterar.getValue());
             reserva.setQuarto(quartoAlterar.getValue());
             reserva.setTipoReserva(tipoReservaAlterar.getValue());
-         
+
             Hotel.getInstance().alterarReserva(reserva);
         } catch (ReservaNaoExisteException hne) {
             JOptionPane.showMessageDialog(null, hne.getMessage());
         }
+    }
+
+    @FXML
+    protected void buscarReserva() {
+        try {
+            reserva = Hotel.getInstance().buscarReserva(Long.parseLong(idBuscar.getText()));
+            nomeBuscar.setText(reserva.getHospede().getNome());
+            cpfBuscar.setText(reserva.getHospede().getCpf());
+            quartoBuscar.setText(reserva.getQuarto().getTipo().name());
+
+        } catch (ReservaNaoExisteException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+    }
+    
+    @FXML
+    protected void buscarRemoverReserva() {
+        try {
+            reserva = Hotel.getInstance().buscarReserva(Long.parseLong(idRemover.getText()));
+            nomeRemover.setText(reserva.getHospede().getNome());
+            cpfRemover.setText(reserva.getHospede().getCpf());
+            quartoRemover.setText(reserva.getQuarto().getTipo().name());
+
+        } catch (ReservaNaoExisteException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+    }
+    
+    @FXML
+    protected void removerReserva(){
+        try{
+            reserva = Hotel.getInstance().buscarReserva(Long.parseLong(idRemover.getText()));
+            Hotel.getInstance().removerReserva(reserva);
+        }catch(ReservaNaoExisteException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        
     }
 
     @Override

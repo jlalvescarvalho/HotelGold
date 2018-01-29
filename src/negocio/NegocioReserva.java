@@ -75,9 +75,7 @@ public class NegocioReserva {
 
     }
 
-    public void removerReserva(long id) throws ReservaNaoExisteException {
-        Reserva r = buscarReserva(id);
-
+    public void removerReserva(Reserva r) throws ReservaNaoExisteException {
         if (r != null) {
             repositorioReserva.removerReserva(r);
         } else {

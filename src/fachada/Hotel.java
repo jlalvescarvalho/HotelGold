@@ -81,8 +81,8 @@ public class Hotel {
         negocioHospede.removerHospede(cpf);
     }
 
-    public void removerReserva(long id) throws ReservaNaoExisteException {
-        negocioReserva.removerReserva(id);
+    public void removerReserva(Reserva reserva) throws ReservaNaoExisteException {
+        negocioReserva.removerReserva(reserva);
     }
 
     public ArrayList<Hospede> listaHospedes() {
