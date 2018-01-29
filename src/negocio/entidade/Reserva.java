@@ -7,14 +7,14 @@ import java.util.Date;
 public class Reserva {
     private long id;
     private Quarto quarto;
-    private LocalDate dataEntrada;
-    private LocalDate dataSaida;
+    private Date dataEntrada;
+    private Date dataSaida;
     private Hospede hospede;
     private TipoReservaEnum tipoReserva;
 
     private static int contadorId = 1;
 
-    public Reserva(Quarto quarto, LocalDate dataEntrada, LocalDate dataSaida, Hospede hospede, TipoReservaEnum tipoReserva) {
+    public Reserva(Quarto quarto, Date dataEntrada, Date dataSaida, Hospede hospede, TipoReservaEnum tipoReserva) {
         this.id = contadorId++;
         this.quarto = quarto;
         this.dataEntrada = dataEntrada;
@@ -72,19 +72,19 @@ public class Reserva {
         this.quarto = quarto;
     }
 
-    public LocalDate getDataEntrada() {
+    public Date getDataEntrada() {
         return dataEntrada;
     }
 
-    public void setDataEntrada(LocalDate dataEntrada) {
+    public void setDataEntrada(Date dataEntrada) {
         this.dataEntrada = dataEntrada;
     }
 
-    public LocalDate getDataSaida() {
+    public Date getDataSaida() {
         return dataSaida;
     }
 
-    public void setDataSaida(LocalDate dataSaida) {
+    public void setDataSaida(Date dataSaida) {
         this.dataSaida = dataSaida;
     }
 
@@ -96,9 +96,10 @@ public class Reserva {
         this.hospede = hospede;
     }
     
-    public void checkOut(){
-        double total = this.calcularConta() + this.hospede.getCartaoConsumo().calcularConsumo();
+    public double checkOut(){
+        double total = this.calcularConta() + this.hospede.getCartaoConsumo().calcularConsumo() + this.tipoReserva.getPreco();
         this.quarto.setOcupado(false);
+        return total;
     }
 
     @Override

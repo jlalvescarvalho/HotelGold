@@ -8,7 +8,7 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="691.0" prefWidth="1041.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controller.TelaReservaController">
   <tabs>
-    <Tab onSelectionChanged="#preencherTipoQuarto" text="Cadastrar">
+    <Tab onSelectionChanged="#preencherTipoQuarto" text="Check in">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="1052.0">
                <children>
@@ -16,7 +16,7 @@
                   <Label layoutX="8.0" layoutY="185.0" text="Tipo quarto:" />
                   <Label layoutX="11.0" layoutY="109.0" text="Cpf:" />
                   <TextField fx:id="cpfCadastrar" layoutX="98.0" layoutY="104.0" />
-                  <Button layoutX="69.0" layoutY="465.0" mnemonicParsing="false" onAction="#cadastrarReserva" text="Cadastrar" />
+                  <Button layoutX="208.0" layoutY="436.0" mnemonicParsing="false" onAction="#cadastrarReserva" text="Reservar" />
                   <DatePicker fx:id="dataEntradaCadastrar" layoutX="14.0" layoutY="311.0" promptText="Data de entrada" />
                   <DatePicker fx:id="dataSaidaCadastrar" layoutX="285.0" layoutY="311.0" promptText="Data de saída" />
                   <Button layoutX="311.0" layoutY="104.0" mnemonicParsing="false" onAction="#buscarCadastrar" text="Buscar" />
@@ -85,6 +85,31 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <ListView fx:id="listaReservas" layoutX="4.0" layoutY="5.0" prefHeight="640.0" prefWidth="1027.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Check out">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="6.0" layoutY="45.0" text="Id:" />
+                  <Label layoutX="1.0" layoutY="113.0" text="Nome:" />
+                  <Label layoutX="6.0" layoutY="183.0" text="Cpf:" />
+                  <TextField fx:id="idCheckOut" layoutX="101.0" layoutY="40.0" prefHeight="31.0" prefWidth="53.0" />
+                  <Button layoutX="175.0" layoutY="40.0" mnemonicParsing="false" onAction="#buscarCheckOut" text="Buscar" />
+                  <Separator layoutY="218.0" prefHeight="3.0" prefWidth="1041.0" />
+                  <Label layoutX="6.0" layoutY="236.0" text="Tipo quarto:" />
+                  <Label fx:id="nomeCheckOut" layoutX="95.0" layoutY="102.0" prefHeight="42.0" prefWidth="934.0" />
+                  <Label fx:id="cpfCheckOut" layoutX="94.0" layoutY="175.0" prefHeight="37.0" prefWidth="290.0" />
+                  <Label fx:id="tipoQuartoCheckOut" layoutX="101.0" layoutY="227.0" prefHeight="40.0" prefWidth="255.0" />
+                  <Label layoutX="466.0" layoutY="236.0" text="Tipo reserva:" />
+                  <Label fx:id="tipoReservaCheckOut" layoutX="570.0" layoutY="231.0" prefHeight="33.0" prefWidth="246.0" />
+                  <Label layoutX="6.0" layoutY="285.0" text="Lista consumo:" />
+                  <ListView fx:id="listaConsumoCheckOut" layoutX="118.0" layoutY="296.0" prefHeight="352.0" prefWidth="246.0" />
+                  <Label layoutX="466.0" layoutY="306.0" text="Total:" />
+                  <Label fx:id="totalCheckOut" layoutX="521.0" layoutY="299.0" prefHeight="35.0" prefWidth="162.0" textFill="#e84812" />
+                  <Button layoutX="471.0" layoutY="396.0" mnemonicParsing="false" onAction="#finalizarReserva" text="Finalizar" />
                </children>
             </AnchorPane>
         </content>

@@ -2,7 +2,7 @@ package gui.controller;
 
 import fachada.Hotel;
 import java.net.URL;
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -67,13 +67,27 @@ public class TelaReservaController implements Initializable {
     private DatePicker dataSaidaAlterar;
     @FXML
     private ListView<String> listaReservas = new ListView<>();
+    @FXML
+    private Label nomeCheckOut;
+    @FXML
+    private Label cpfCheckOut;
+    @FXML
+    private Label tipoQuartoCheckOut;
+    @FXML
+    private Label tipoReservaCheckOut;
+    @FXML
+    private Label totalCheckOut;
+    @FXML
+    private TextField idCheckOut;
+    @FXML
+    private ListView<Enum> listaConsumoCheckOut = new ListView<>();
 
     @FXML
     protected void cadastrarReserva() {
         try {
             Quarto q = quartoCadastrar.getValue();
-            LocalDate d1 = dataEntradaCadastrar.getValue();
-            LocalDate d2 = dataSaidaCadastrar.getValue();
+            Date d1 = Date.valueOf(dataEntradaCadastrar.getValue());
+            Date d2 = Date.valueOf(dataSaidaCadastrar.getValue());
             Reserva reserva = new Reserva(q, d1, d2, hospede, tipoReservaCadastrar.getValue());
             Hotel.getInstance().adicionarReserva(reserva);
         } catch (ReservaJaExisteException re) {
@@ -149,7 +163,7 @@ public class TelaReservaController implements Initializable {
     @FXML
     protected void alterarReserva() {
         try {
-            reserva.setDataSaida(dataSaidaAlterar.getValue());
+            reserva.setDataSaida(Date.valueOf(dataSaidaAlterar.getValue()));
             reserva.setQuarto(quartoAlterar.getValue());
             reserva.setTipoReserva(tipoReservaAlterar.getValue());
 
@@ -172,7 +186,7 @@ public class TelaReservaController implements Initializable {
         }
 
     }
-    
+
     @FXML
     protected void buscarRemoverReserva() {
         try {
@@ -186,16 +200,40 @@ public class TelaReservaController implements Initializable {
         }
 
     }
-    
+
     @FXML
-    protected void removerReserva(){
-        try{
+    protected void removerReserva() {
+        try {
             reserva = Hotel.getInstance().buscarReserva(Long.parseLong(idRemover.getText()));
             Hotel.getInstance().removerReserva(reserva);
-        }catch(ReservaNaoExisteException e){
+        } catch (ReservaNaoExisteException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        
+
+    }
+
+    @FXML
+    protected void buscarCheckOut() {
+        try {
+            reserva = Hotel.getInstance().buscarReserva(Long.parseLong(idCheckOut.getText()));
+            nomeCheckOut.setText(reserva.getHospede().getNome());
+            cpfCheckOut.setText(reserva.getHospede().getCpf());
+            tipoQuartoCheckOut.setText(reserva.getQuarto().getTipo().name());
+            tipoReservaCheckOut.setText(reserva.getTipoReserva().name());
+            ObservableList<Enum> consumoCheckOut = FXCollections.observableArrayList(reserva.getHospede().getCartaoConsumo().getListaConsumo());
+            listaConsumoCheckOut.setItems(consumoCheckOut);
+
+        } catch (ReservaNaoExisteException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+    }
+
+    @FXML
+    protected void finalizarReserva() {
+        String total = String.valueOf(reserva.checkOut());
+        totalCheckOut.setText(total);
+
     }
 
     @Override
