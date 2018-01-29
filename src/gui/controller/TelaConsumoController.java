@@ -51,8 +51,12 @@ public class TelaConsumoController implements Initializable {
     protected void buscarAdicionar() {
         try {
             reserva = Hotel.getInstance().buscarReserva(Long.parseLong(idAdicionar.getText()));
-            nomeAdicionar.setText(reserva.getHospede().getNome());
-            cpfAdicionar.setText(reserva.getHospede().getCpf());
+            if (reserva.getReservaFinalizada() == false) {
+                nomeAdicionar.setText(reserva.getHospede().getNome());
+                cpfAdicionar.setText(reserva.getHospede().getCpf());
+            } else {
+                JOptionPane.showMessageDialog(null, "Essa reserva foi finalizada.");
+            }
 
         } catch (ReservaNaoExisteException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -64,10 +68,15 @@ public class TelaConsumoController implements Initializable {
     protected void buscarRemover() {
         try {
             reserva = Hotel.getInstance().buscarReserva(Long.parseLong(idRemoverConsumo.getText()));
-            listarConsumo();
-            preencherConsumo();
-            nomeRemover.setText(reserva.getHospede().getNome());
-            cpfRemover.setText(reserva.getHospede().getCpf());
+            if (reserva.getReservaFinalizada() == false) {
+                listarConsumo();
+                preencherConsumo();
+                nomeRemover.setText(reserva.getHospede().getNome());
+                cpfRemover.setText(reserva.getHospede().getCpf());
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Essa reserva foi finalizada.");
+            }
 
         } catch (ReservaNaoExisteException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());

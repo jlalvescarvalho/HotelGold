@@ -11,6 +11,7 @@ public class Reserva {
     private Date dataSaida;
     private Hospede hospede;
     private TipoReservaEnum tipoReserva;
+    private boolean reservaFinalizada;
 
     private static int contadorId = 1;
 
@@ -24,6 +25,14 @@ public class Reserva {
         this.tipoReserva = tipoReserva;
     }
 
+    public boolean getReservaFinalizada() {
+        return reservaFinalizada;
+    }
+
+    public void setReservaFinalizada(boolean reservaFinalizada) {
+        this.reservaFinalizada = reservaFinalizada;
+    }
+    
     public TipoReservaEnum getTipoReserva() {
         return tipoReserva;
     }
@@ -99,6 +108,7 @@ public class Reserva {
     public double checkOut(){
         double total = this.calcularConta() + this.hospede.getCartaoConsumo().calcularConsumo() + this.tipoReserva.getPreco();
         this.quarto.setOcupado(false);
+        this.reservaFinalizada = true;
         return total;
     }
 

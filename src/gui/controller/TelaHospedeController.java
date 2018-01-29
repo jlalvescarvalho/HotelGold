@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javax.swing.JOptionPane;
+import negocio.execao.hospede.HospedeInvalidoException;
 import negocio.execao.hospede.HospedeJaExisteException;
 import negocio.execao.hospede.HospedeNaoExisteException;
 
@@ -65,7 +66,9 @@ public class TelaHospedeController implements Initializable {
     private Button btRemover;
     @FXML
     private ListView<String> listaHospedes = new ListView<>();
-    
+    @FXML
+    private Label frequenciaHospede;
+
     @FXML
     protected void cadastrarHospede() {
         String nome, cpf, telefone;
@@ -76,8 +79,11 @@ public class TelaHospedeController implements Initializable {
         try {
             Hospede h = new Hospede(nome, cpf, telefone);
             Hotel.getInstance().adicionarHospede(h);
-
-        } catch (HospedeJaExisteException he) {
+            JOptionPane.showMessageDialog(null, "Hóspede cadastrado.");
+            txtNome.setText("");
+            cpfCadastrar.setText("");
+            txtTelefone.setText("");
+        } catch (HospedeJaExisteException | HospedeInvalidoException he) {
             JOptionPane.showMessageDialog(null, he.getMessage());
         }
     }
@@ -88,6 +94,7 @@ public class TelaHospedeController implements Initializable {
             hospede = Hotel.getInstance().buscarHospede(cpfBuscar.getText());
             labelNome.setText(hospede.getNome());
             labelTelefone.setText(hospede.getTelefone());
+            frequenciaHospede.setText(String.valueOf(hospede.getFrequencia()));
         } catch (HospedeNaoExisteException hne) {
             JOptionPane.showMessageDialog(null, hne.getMessage());
         }
@@ -105,56 +112,67 @@ public class TelaHospedeController implements Initializable {
         }
 
     }
-    
+
     @FXML
-    protected void buscarRemover(){
-        try{
-           hospede = Hotel.getInstance().buscarHospede(cpfRemover.getText());
-           nomeRemover.setText(hospede.getNome());
-           telefoneRemover.setText(hospede.getTelefone());
-        }catch(HospedeNaoExisteException e){
+    protected void buscarRemover() {
+        try {
+            hospede = Hotel.getInstance().buscarHospede(cpfRemover.getText());
+            nomeRemover.setText(hospede.getNome());
+            telefoneRemover.setText(hospede.getTelefone());
+        } catch (HospedeNaoExisteException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        
+
     }
 
     @FXML
     protected void alterarHospede() {
         try {
-            hospede = Hotel.getInstance().buscarHospede(cpfAlterar.getText());
-            hospede.setNome(txtNomeAlterar.getText());
-            hospede.setTelefone(txtTelefoneAlterar.getText());
-            Hotel.getInstance().alterarHospede(hospede);
+            if (hospede != null) {
+                hospede = Hotel.getInstance().buscarHospede(cpfAlterar.getText());
+                hospede.setNome(txtNomeAlterar.getText());
+                hospede.setTelefone(txtTelefoneAlterar.getText());
+                Hotel.getInstance().alterarHospede(hospede);
+                JOptionPane.showMessageDialog(null, "Hóspede alterado.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Hóspede não identificado.");
+            }
         } catch (HospedeNaoExisteException hne) {
             JOptionPane.showMessageDialog(null, hne.getMessage());
         }
     }
-    
+
     @FXML
-    protected void removerHospede(){
-        try{
-            hospede = Hotel.getInstance().buscarHospede(cpfRemover.getText());
-            Hotel.getInstance().removerHospede(hospede.getCpf());
-            
-        }catch(HospedeNaoExisteException e){
+    protected void removerHospede() {
+        try {
+            if (hospede != null) {
+                Hotel.getInstance().removerHospede(hospede.getCpf());
+                JOptionPane.showMessageDialog(null, "Hóspede removido.");
+                nomeRemover.setText("");
+                telefoneRemover.setText("");
+                cpfRemover.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Hóspede não identificado.");
+            }
+
+        } catch (HospedeNaoExisteException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
-            
+
         }
     }
-    
+
     @FXML
-    protected void listarHospedes(){
+    protected void listarHospedes() {
         ArrayList<String> apresentacao = new ArrayList<>();
         ArrayList<Hospede> hospedes = Hotel.getInstance().listaHospedes();
-        
-        for(Hospede h: hospedes){
+
+        for (Hospede h : hospedes) {
             apresentacao.add(h.toString());
         }
-        
+
         ObservableList<String> itens = FXCollections.observableArrayList(apresentacao);
         listaHospedes.setItems(itens);
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

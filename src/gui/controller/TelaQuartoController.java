@@ -22,7 +22,7 @@ import negocio.execao.quarto.QuartoJaExisteException;
 import negocio.execao.quarto.QuartoNaoExisteException;
 
 public class TelaQuartoController implements Initializable {
-    
+
     @FXML
     private ComboBox<TipoQuartoEnum> comboBox = new ComboBox<>();
     @FXML
@@ -51,103 +51,127 @@ public class TelaQuartoController implements Initializable {
     private Label labelTipoRemover;
     @FXML
     private ComboBox<TipoQuartoEnum> comboBoxAlterar = new ComboBox<>();
-    
+
     ArrayList<TipoQuartoEnum> tipoQuarto = new ArrayList<>();
-    
+
     Quarto quarto;
-    
+
     @FXML
-    protected void cadastrar(){
+    protected void cadastrar() {
         Quarto quarto = new Quarto(comboBox.getValue());
         try {
             Hotel.getInstance().adicionarQuarto(quarto);
+            JOptionPane.showMessageDialog(null, "Quarto cadastrado.");
         } catch (QuartoJaExisteException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        }   
+        }
     }
-    
+
     @FXML
-    protected void preencherComboBox(){
-        
+    protected void preencherComboBox() {
+
         ArrayList<TipoQuartoEnum> tipoQuarto = new ArrayList<>();
         tipoQuarto.add(TipoQuartoEnum.QuartoCasal);
         tipoQuarto.add(TipoQuartoEnum.QuartoSolteiro);
         tipoQuarto.add(TipoQuartoEnum.QuartoDuploSolteiro);
         tipoQuarto.add(TipoQuartoEnum.QuartoFamilia);
-        
+
         ObservableList<TipoQuartoEnum> itens = FXCollections.observableArrayList(tipoQuarto);
         comboBox.setItems(itens);
         comboBoxAlterar.setItems(itens);
     }
-    
+
     @FXML
-    protected void ListarQuartos(){
+    protected void ListarQuartos() {
         ArrayList<String> apresentacao = new ArrayList<>();
         ArrayList<Quarto> quartos = Hotel.getInstance().listaQuartos();
-        
-        for(Quarto q: quartos){
+
+        for (Quarto q : quartos) {
             apresentacao.add(q.toString());
         }
-        
+
         ObservableList<String> itens = FXCollections.observableArrayList(apresentacao);
         listaQuarto.setItems(itens);
     }
-    
+
     @FXML
-    protected void bucarQuarto(){
+    protected void bucarQuarto() {
         try {
-            quarto = Hotel.getInstance().buscarQuarto(Integer.parseInt(txtNumeroBuscar.getText()));
-            labelTipoQuarto.setText(quarto.getTipo().name());
+            if (!txtNumeroBuscar.getText().equals("")) {
+                quarto = Hotel.getInstance().buscarQuarto(Integer.parseInt(txtNumeroBuscar.getText()));
+                labelTipoQuarto.setText(quarto.getTipo().name());
+            } else {
+                JOptionPane.showMessageDialog(null, "Quarto não identificado.");
+            }
+
         } catch (QuartoNaoExisteException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
+
     @FXML
-    protected void buscarQuartoAlterar(){
+    protected void buscarQuartoAlterar() {
         try {
-            quarto = Hotel.getInstance().buscarQuarto(Integer.parseInt(txtNumeroAlterar.getText()));
-            preencherComboBox();
-            comboBoxAlterar.setValue(quarto.getTipo());
-            
+            if (!txtNumeroAlterar.getText().equals("")) {
+                quarto = Hotel.getInstance().buscarQuarto(Integer.parseInt(txtNumeroAlterar.getText()));
+                preencherComboBox();
+                comboBoxAlterar.setValue(quarto.getTipo());
+            } else {
+                JOptionPane.showMessageDialog(null, "Quarto não identificado.");
+            }
         } catch (QuartoNaoExisteException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
+
     @FXML
-    protected void alterarQuarto(){
+    protected void alterarQuarto() {
         try {
-            quarto = Hotel.getInstance().buscarQuarto(Integer.parseInt(txtNumeroAlterar.getText()));
-            TipoQuartoEnum t = comboBoxAlterar.getValue();
-            quarto.setTipo(t);
-            Hotel.getInstance().alterarQuarto(quarto);
-            
+            if (quarto != null) {
+                TipoQuartoEnum t = comboBoxAlterar.getValue();
+                quarto.setTipo(t);
+                Hotel.getInstance().alterarQuarto(quarto);
+                JOptionPane.showMessageDialog(null, "Quarto alterado.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Quarto não identificado.");
+            }
         } catch (QuartoNaoExisteException ex) {
             Logger.getLogger(TelaQuartoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     @FXML
-    protected void buscarRemover(){
+    protected void buscarRemover() {
         try {
-            quarto = Hotel.getInstance().buscarQuarto(Integer.parseInt(txtNumeroRemover.getText()));
-            labelTipoRemover.setText(quarto.getTipo().name());
-            
+            if (!txtNumeroRemover.getText().equals("")) {
+                quarto = Hotel.getInstance().buscarQuarto(Integer.parseInt(txtNumeroRemover.getText()));
+                labelTipoRemover.setText(quarto.getTipo().name());
+            } else {
+                JOptionPane.showMessageDialog(null, "Quarto não identificado.");
+            }
         } catch (QuartoNaoExisteException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
+
     @FXML
-    protected void remover(){
+    protected void remover() {
         try {
-            Hotel.getInstance().removerQuarto(Integer.parseInt(txtNumeroRemover.getText()));
+            if (quarto != null) {
+                Hotel.getInstance().removerQuarto(Integer.parseInt(txtNumeroRemover.getText()));
+                labelTipoRemover.setText("");
+                JOptionPane.showMessageDialog(null, "Quarto removido.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Quarto não identificado.");
+            }
         } catch (QuartoNaoExisteException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }     
+    }
 }

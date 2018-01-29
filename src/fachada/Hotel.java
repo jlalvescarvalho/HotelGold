@@ -9,6 +9,7 @@ import negocio.entidade.Quarto;
 import negocio.entidade.Reserva;
 import negocio.entidade.TipoQuartoEnum;
 import negocio.entidade.TipoReservaEnum;
+import negocio.execao.hospede.HospedeInvalidoException;
 import negocio.execao.hospede.HospedeJaExisteException;
 import negocio.execao.hospede.HospedeNaoExisteException;
 import negocio.execao.quarto.QuartoJaExisteException;
@@ -41,11 +42,11 @@ public class Hotel {
         negocioQuarto.cadastrarQuarto(quarto);
     }
 
-    public void adicionarHospede(Hospede hospede) throws HospedeJaExisteException {
+    public void adicionarHospede(Hospede hospede) throws HospedeJaExisteException, HospedeInvalidoException {
         negocioHospede.cadastrarHospede(hospede);
     }
 
-    public void adicionarReserva(Reserva reserva) throws ReservaJaExisteException, HospedeNaoExisteException, QuartoNaoExisteException, QuartoOcupadoException{
+    public void adicionarReserva(Reserva reserva) throws ReservaJaExisteException, HospedeNaoExisteException, QuartoNaoExisteException, QuartoOcupadoException {
         negocioReserva.cadastarReserva(reserva);
     }
 
@@ -104,7 +105,8 @@ public class Hotel {
     public ArrayList<Quarto> quartosVagos() {
         return negocioQuarto.listaQuartosVagos();
     }
-    public ArrayList<Reserva> listarReservas(){
+
+    public ArrayList<Reserva> listarReservas() {
         return negocioReserva.listarReservas();
     }
 }

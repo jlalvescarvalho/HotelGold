@@ -3,6 +3,8 @@ package gui.controller;
 import fachada.Hotel;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -90,6 +92,7 @@ public class TelaReservaController implements Initializable {
             Date d2 = Date.valueOf(dataSaidaCadastrar.getValue());
             Reserva reserva = new Reserva(q, d1, d2, hospede, tipoReservaCadastrar.getValue());
             Hotel.getInstance().adicionarReserva(reserva);
+            JOptionPane.showMessageDialog(null, "Reserva cadastrada.");
         } catch (ReservaJaExisteException re) {
             JOptionPane.showMessageDialog(null, re.getMessage());
         } catch (HospedeNaoExisteException hne) {
@@ -99,7 +102,7 @@ public class TelaReservaController implements Initializable {
         } catch (QuartoNaoExisteException qne) {
             JOptionPane.showMessageDialog(null, qne.getMessage());
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro");
         }
     }
 
@@ -153,7 +156,9 @@ public class TelaReservaController implements Initializable {
             preencherTipoQuarto();
             tipoReservaAlterar.setValue(reserva.getTipoReserva());
             quartoAlterar.setValue(reserva.getQuarto());
-
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date = LocalDate.parse(reserva.getDataSaida().toString(), formatter);
+            dataSaidaAlterar.setValue(date);
         } catch (ReservaNaoExisteException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -163,11 +168,16 @@ public class TelaReservaController implements Initializable {
     @FXML
     protected void alterarReserva() {
         try {
-            reserva.setDataSaida(Date.valueOf(dataSaidaAlterar.getValue()));
-            reserva.setQuarto(quartoAlterar.getValue());
-            reserva.setTipoReserva(tipoReservaAlterar.getValue());
+            if (reserva != null) {
+                reserva.setDataSaida(Date.valueOf(dataSaidaAlterar.getValue()));
+                reserva.setQuarto(quartoAlterar.getValue());
+                reserva.setTipoReserva(tipoReservaAlterar.getValue());
+                Hotel.getInstance().alterarReserva(reserva);
+                JOptionPane.showMessageDialog(null, "Reserva alterada.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Reserva não identificada.");
+            }
 
-            Hotel.getInstance().alterarReserva(reserva);
         } catch (ReservaNaoExisteException hne) {
             JOptionPane.showMessageDialog(null, hne.getMessage());
         }
@@ -204,8 +214,16 @@ public class TelaReservaController implements Initializable {
     @FXML
     protected void removerReserva() {
         try {
-            reserva = Hotel.getInstance().buscarReserva(Long.parseLong(idRemover.getText()));
-            Hotel.getInstance().removerReserva(reserva);
+            if (reserva != null) {
+                Hotel.getInstance().removerReserva(reserva);
+                JOptionPane.showMessageDialog(null, "Reserva removida.");
+                nomeRemover.setText("");
+                cpfRemover.setText("");
+                quartoRemover.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Reserva não identificada.");
+            }
+
         } catch (ReservaNaoExisteException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -233,6 +251,11 @@ public class TelaReservaController implements Initializable {
     protected void finalizarReserva() {
         String total = String.valueOf(reserva.checkOut());
         totalCheckOut.setText(total);
+        try {
+            Hotel.getInstance().alterarReserva(reserva);
+        } catch (ReservaNaoExisteException r) {
+            JOptionPane.showMessageDialog(null, r.getMessage());
+        }
 
     }
 

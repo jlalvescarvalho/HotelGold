@@ -48,6 +48,8 @@
                   <Button fx:id="btBuscar" layoutX="307.0" layoutY="107.0" mnemonicParsing="false" onAction="#buscarHospede" text="Buscar" />
                   <Label fx:id="labelNome" layoutX="101.0" layoutY="39.0" prefHeight="34.0" prefWidth="798.0" />
                   <Label fx:id="labelTelefone" layoutX="101.0" layoutY="177.0" prefHeight="33.0" prefWidth="198.0" />
+                  <Label layoutX="386.0" layoutY="183.0" text="Frequência:" />
+                  <Label fx:id="frequenciaHospede" layoutX="483.0" layoutY="180.0" prefHeight="27.0" prefWidth="54.0" />
                </children>
             </AnchorPane>
         </content>
