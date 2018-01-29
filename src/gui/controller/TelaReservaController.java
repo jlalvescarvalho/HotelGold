@@ -4,6 +4,7 @@ import fachada.Hotel;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -12,10 +13,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.util.Callback;
 import javax.swing.JOptionPane;
 import negocio.entidade.Hospede;
 import negocio.entidade.Quarto;
@@ -87,6 +90,7 @@ public class TelaReservaController implements Initializable {
     @FXML
     protected void cadastrarReserva() {
         try {
+            dataEntradaCadastrar.setValue(LocalDate.now());
             Quarto q = quartoCadastrar.getValue();
             Date d1 = Date.valueOf(dataEntradaCadastrar.getValue());
             Date d2 = Date.valueOf(dataSaidaCadastrar.getValue());
@@ -106,6 +110,32 @@ public class TelaReservaController implements Initializable {
         }
     }
 
+    
+    public void desabilitarDatasAnteriores() {
+        final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
+            @Override
+            public DateCell call(final DatePicker datePicker) {
+                return new DateCell() {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        if (item.isBefore(dataEntradaCadastrar.getValue().plusDays(1))) {
+                            setDisable(true);
+                            setStyle("-fx-background-color: #EEEEEE;");
+                        }
+                    }
+                };
+            }
+        };
+        dataEntradaCadastrar.setDayCellFactory(dayCellFactory);
+        LocalDate hoje = LocalDate.now();
+        LocalDate ontem = hoje.minus(Period.ofDays(1));
+        dataEntradaCadastrar.setValue(ontem);
+        dataSaidaCadastrar.setDayCellFactory(dayCellFactory);
+        dataSaidaAlterar.setValue(dataEntradaCadastrar.getValue().plusDays(1));
+    }
+
     @FXML
     protected void preencherTipoQuarto() {
         preencherTipoReserva();
@@ -119,6 +149,7 @@ public class TelaReservaController implements Initializable {
 
     @FXML
     protected void buscarCadastrar() {
+        desabilitarDatasAnteriores();
         try {
             hospede = Hotel.getInstance().buscarHospede(cpfCadastrar.getText());
             nomeCadastrar.setText(hospede.getNome());
