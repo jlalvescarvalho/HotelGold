@@ -100,4 +100,12 @@ public class Reserva {
         double total = this.calcularConta() + this.hospede.getCartaoConsumo().calcularConsumo();
         this.quarto.setOcupado(false);
     }
+
+    @Override
+    public String toString() {
+        return "Hospede: "+this.hospede.getNome() + " Quarto: "+this.quarto.getTipo().name()+" Data Entrada: "+this.dataEntrada+" Data Saida: "+
+                this.dataSaida+" Tipo Reserva: "+this.tipoReserva.name();
+    }
+    
+    
 }

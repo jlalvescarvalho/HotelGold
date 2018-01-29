@@ -8,13 +8,20 @@ import repositorio.RepositorioHospede;
 
 public class NegocioHospede {
     private RepositorioHospede repositorio;
+    private static NegocioHospede myself;
 
 
-    public NegocioHospede() {
+    private NegocioHospede() {
         this.repositorio = new RepositorioHospede();
     }
 
-
+    public static NegocioHospede getInstace(){
+        if(myself == null){
+            myself = new NegocioHospede();
+        }
+        return myself;
+    }
+    
     public void cadastrarHospede(Hospede hospede) throws HospedeJaExisteException{
         Hospede h = repositorio.buscarHospede(hospede.getCpf());
         

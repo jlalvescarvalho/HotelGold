@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
 import negocio.entidade.Hospede;
@@ -23,10 +24,12 @@ import negocio.execao.hospede.HospedeNaoExisteException;
 import negocio.execao.quarto.QuartoNaoExisteException;
 import negocio.execao.quarto.QuartoOcupadoException;
 import negocio.execao.reserva.ReservaJaExisteException;
+import negocio.execao.reserva.ReservaNaoExisteException;
 
 public class TelaReservaController implements Initializable {
-    
+
     private Hospede hospede;
+    private Reserva reserva;
     @FXML
     private Label nomeCadastrar;
     @FXML
@@ -63,55 +66,103 @@ public class TelaReservaController implements Initializable {
     private DatePicker dataEntradaCadastrar;
     @FXML
     private DatePicker dataSaidaAlterar;
-    
     @FXML
-    protected void cadastrarReserva(){
-        try{
+    private ListView<String> listaReservas = new ListView<>();
+   
+
+    @FXML
+    protected void cadastrarReserva() {
+        try {
             Quarto q = quartoCadastrar.getValue();
             LocalDate d1 = dataEntradaCadastrar.getValue();
             LocalDate d2 = dataSaidaCadastrar.getValue();
-            Reserva reserva = new Reserva(q,d1,d2,hospede, tipoReservaCadastrar.getValue());
+            Reserva reserva = new Reserva(q, d1, d2, hospede, tipoReservaCadastrar.getValue());
             Hotel.getInstance().adicionarReserva(reserva);
-        }catch(ReservaJaExisteException re){
+        } catch (ReservaJaExisteException re) {
             JOptionPane.showMessageDialog(null, re.getMessage());
-        }catch(HospedeNaoExisteException hne){
+        } catch (HospedeNaoExisteException hne) {
             JOptionPane.showMessageDialog(null, hne.getMessage());
-        }catch(QuartoOcupadoException qo){
+        } catch (QuartoOcupadoException qo) {
             JOptionPane.showMessageDialog(null, qo.getMessage());
-        }catch(QuartoNaoExisteException qne){
+        } catch (QuartoNaoExisteException qne) {
             JOptionPane.showMessageDialog(null, qne.getMessage());
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
+
     @FXML
-    protected void preencherTipoQuarto(){
+    protected void preencherTipoQuarto() {
         preencherTipoReserva();
         ArrayList<Quarto> tipoQuarto = Hotel.getInstance().quartosVagos();
-        
+
         ObservableList<Quarto> itens = FXCollections.observableArrayList(tipoQuarto);
-        quartoCadastrar.setItems(itens);   
+        quartoCadastrar.setItems(itens);
+        quartoAlterar.setItems(itens);
+        
+    }
+
+    @FXML
+    protected void buscarCadastrar() {
+        try {
+            hospede = Hotel.getInstance().buscarHospede(cpfCadastrar.getText());
+            nomeCadastrar.setText(hospede.getNome());
+        } catch (HospedeNaoExisteException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+    }
+
+    protected void preencherTipoReserva() {
+        ArrayList<TipoReservaEnum> tipoReserva = Hotel.getInstance().tiposReservas();
+
+        ObservableList<TipoReservaEnum> itens = FXCollections.observableArrayList(tipoReserva);
+        tipoReservaCadastrar.setItems(itens);
+        tipoReservaAlterar.setItems(itens);
+    }
+
+    @FXML
+    protected void listarReservas() {
+        ArrayList<String> apresentacao = new ArrayList<>();
+        ArrayList<Reserva> reservas = Hotel.getInstance().listarReservas();
+
+        for (Reserva r : reservas) {
+            apresentacao.add(r.toString());
+        }
+
+        ObservableList<String> itens = FXCollections.observableArrayList(apresentacao);
+        listaReservas.setItems(itens);
+    }
+
+    @FXML
+    protected void buscarAlterarReserva() {
+        try {
+            reserva = Hotel.getInstance().buscarReserva(Long.parseLong(idAlterar.getText()));
+            preencherTipoQuarto();
+            tipoReservaAlterar.setValue(reserva.getTipoReserva());
+            quartoAlterar.setValue(reserva.getQuarto());
+
+        } catch (ReservaNaoExisteException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
     }
     
     @FXML
-    protected void buscarCadastrar(){
-        try{
-           hospede = Hotel.getInstance().buscarHospede(cpfCadastrar.getText());
-           nomeCadastrar.setText(hospede.getNome());
-        }catch(HospedeNaoExisteException e){
-            JOptionPane.showMessageDialog(null, e.getMessage());
+    protected void alterarReserva() {
+        try {
+            reserva.setDataSaida(dataSaidaAlterar.getValue());
+            reserva.setQuarto(quartoAlterar.getValue());
+            reserva.setTipoReserva(tipoReservaAlterar.getValue());
+         
+            Hotel.getInstance().alterarReserva(reserva);
+        } catch (ReservaNaoExisteException hne) {
+            JOptionPane.showMessageDialog(null, hne.getMessage());
         }
-        
     }
-    protected void preencherTipoReserva(){
-        ArrayList<TipoReservaEnum> tipoReserva = Hotel.getInstance().tiposReservas();
-        
-        ObservableList<TipoReservaEnum> itens = FXCollections.observableArrayList(tipoReserva);
-        tipoReservaCadastrar.setItems(itens);
-    }
-  
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //TODO
-    }     
+    }
 }

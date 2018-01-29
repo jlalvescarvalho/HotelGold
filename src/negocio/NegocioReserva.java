@@ -18,11 +18,19 @@ public class NegocioReserva {
     private RepositorioReserva repositorioReserva;
     private NegocioHospede negocioHospede;
     private NegocioQuarto negocioQuarto;
+    private static NegocioReserva myself;
 
-    public NegocioReserva() {
+    private NegocioReserva() {
         this.repositorioReserva = new RepositorioReserva();
-        this.negocioHospede = new NegocioHospede();
-        this.negocioQuarto = new NegocioQuarto();
+        this.negocioHospede = NegocioHospede.getInstace();
+        this.negocioQuarto = NegocioQuarto.getInstance();
+    }
+    
+    public static NegocioReserva getInstance(){
+        if(myself == null){
+            myself = new NegocioReserva();
+        }
+        return myself;
     }
 
     public void cadastarReserva(Reserva reserva) throws HospedeNaoExisteException, QuartoNaoExisteException, QuartoOcupadoException, ReservaJaExisteException {
@@ -80,6 +88,10 @@ public class NegocioReserva {
     public ArrayList<TipoReservaEnum> tiposReservas() {
         return repositorioReserva.tiposReservas();
 
+    }
+
+    public ArrayList<Reserva> listarReservas() {
+        return repositorioReserva.recuperarTodas();
     }
 
 }

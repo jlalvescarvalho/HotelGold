@@ -25,9 +25,9 @@ public class Hotel {
     private static Hotel myself;
 
     private Hotel() {
-        this.negocioQuarto = new NegocioQuarto();
-        this.negocioHospede = new NegocioHospede();
-        this.negocioReserva = new NegocioReserva();
+        this.negocioQuarto = NegocioQuarto.getInstance();
+        this.negocioHospede = NegocioHospede.getInstace();
+        this.negocioReserva = NegocioReserva.getInstance();
     }
 
     public static Hotel getInstance() {
@@ -103,5 +103,8 @@ public class Hotel {
 
     public ArrayList<Quarto> quartosVagos() {
         return negocioQuarto.listaQuartosVagos();
+    }
+    public ArrayList<Reserva> listarReservas(){
+        return negocioReserva.listarReservas();
     }
 }

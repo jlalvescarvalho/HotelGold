@@ -10,11 +10,19 @@ import repositorio.RepositorioQuarto;
 public class NegocioQuarto {
 
     private RepositorioQuarto repositorioQuarto;
+    private static NegocioQuarto myself;
 
-    public NegocioQuarto() {
+    private NegocioQuarto() {
         this.repositorioQuarto =  new RepositorioQuarto();
     }
-
+    
+    public static NegocioQuarto getInstance(){
+        if(myself == null){
+            myself = new NegocioQuarto();
+        }
+        return myself;
+    }
+    
     public void cadastrarQuarto(Quarto quarto) throws QuartoJaExisteException{
 
         if(repositorioQuarto.recuperarQuarto(quarto.getNumero()) == null){
@@ -47,10 +55,10 @@ public class NegocioQuarto {
     public Quarto buscarQuarto(int numero) throws QuartoNaoExisteException{
         Quarto q = repositorioQuarto.recuperarQuarto(numero);
 
-        if(q != null ){
-            return q;
-        }else{
+        if(q == null){
             throw new QuartoNaoExisteException();
+        }else{
+            return q;
         }
     }
 

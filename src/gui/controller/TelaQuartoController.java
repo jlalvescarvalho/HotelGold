@@ -63,9 +63,9 @@ public class TelaQuartoController implements Initializable {
             Hotel.getInstance().adicionarQuarto(quarto);
         } catch (QuartoJaExisteException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-        
+        }   
     }
+    
     @FXML
     protected void preencherComboBox(){
         
