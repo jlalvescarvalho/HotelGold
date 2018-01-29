@@ -151,8 +151,13 @@ public class TelaReservaController implements Initializable {
     protected void buscarCadastrar() {
         desabilitarDatasAnteriores();
         try {
-            hospede = Hotel.getInstance().buscarHospede(cpfCadastrar.getText());
-            nomeCadastrar.setText(hospede.getNome());
+            if (!cpfCadastrar.getText().equals("")) {
+                hospede = Hotel.getInstance().buscarHospede(cpfCadastrar.getText());
+                nomeCadastrar.setText(hospede.getNome());
+            } else {
+                JOptionPane.showMessageDialog(null, "Reserva não identificada.");
+            }
+
         } catch (HospedeNaoExisteException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -183,13 +188,18 @@ public class TelaReservaController implements Initializable {
     @FXML
     protected void buscarAlterarReserva() {
         try {
-            reserva = Hotel.getInstance().buscarReserva(Long.parseLong(idAlterar.getText()));
-            preencherTipoQuarto();
-            tipoReservaAlterar.setValue(reserva.getTipoReserva());
-            quartoAlterar.setValue(reserva.getQuarto());
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate date = LocalDate.parse(reserva.getDataSaida().toString(), formatter);
-            dataSaidaAlterar.setValue(date);
+            if (!idAlterar.getText().equals("")) {
+                reserva = Hotel.getInstance().buscarReserva(Long.parseLong(idAlterar.getText()));
+                preencherTipoQuarto();
+                tipoReservaAlterar.setValue(reserva.getTipoReserva());
+                quartoAlterar.setValue(reserva.getQuarto());
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate date = LocalDate.parse(reserva.getDataSaida().toString(), formatter);
+                dataSaidaAlterar.setValue(date);
+            } else {
+                JOptionPane.showMessageDialog(null, "Reserva não identificada.");
+            }
+
         } catch (ReservaNaoExisteException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -217,10 +227,14 @@ public class TelaReservaController implements Initializable {
     @FXML
     protected void buscarReserva() {
         try {
-            reserva = Hotel.getInstance().buscarReserva(Long.parseLong(idBuscar.getText()));
-            nomeBuscar.setText(reserva.getHospede().getNome());
-            cpfBuscar.setText(reserva.getHospede().getCpf());
-            quartoBuscar.setText(reserva.getQuarto().getTipo().name());
+            if (!idBuscar.getText().equals("")) {
+                reserva = Hotel.getInstance().buscarReserva(Long.parseLong(idBuscar.getText()));
+                nomeBuscar.setText(reserva.getHospede().getNome());
+                cpfBuscar.setText(reserva.getHospede().getCpf());
+                quartoBuscar.setText(reserva.getQuarto().getTipo().name());
+            } else {
+                JOptionPane.showMessageDialog(null, "Reserva não identificada.");
+            }
 
         } catch (ReservaNaoExisteException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -231,10 +245,14 @@ public class TelaReservaController implements Initializable {
     @FXML
     protected void buscarRemoverReserva() {
         try {
-            reserva = Hotel.getInstance().buscarReserva(Long.parseLong(idRemover.getText()));
-            nomeRemover.setText(reserva.getHospede().getNome());
-            cpfRemover.setText(reserva.getHospede().getCpf());
-            quartoRemover.setText(reserva.getQuarto().getTipo().name());
+            if (!idRemover.getText().equals("")) {
+                reserva = Hotel.getInstance().buscarReserva(Long.parseLong(idRemover.getText()));
+                nomeRemover.setText(reserva.getHospede().getNome());
+                cpfRemover.setText(reserva.getHospede().getCpf());
+                quartoRemover.setText(reserva.getQuarto().getTipo().name());
+            } else {
+                JOptionPane.showMessageDialog(null, "Reserva não identificada.");
+            }
 
         } catch (ReservaNaoExisteException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -264,13 +282,18 @@ public class TelaReservaController implements Initializable {
     @FXML
     protected void buscarCheckOut() {
         try {
-            reserva = Hotel.getInstance().buscarReserva(Long.parseLong(idCheckOut.getText()));
-            nomeCheckOut.setText(reserva.getHospede().getNome());
-            cpfCheckOut.setText(reserva.getHospede().getCpf());
-            tipoQuartoCheckOut.setText(reserva.getQuarto().getTipo().name());
-            tipoReservaCheckOut.setText(reserva.getTipoReserva().name());
-            ObservableList<Enum> consumoCheckOut = FXCollections.observableArrayList(reserva.getHospede().getCartaoConsumo().getListaConsumo());
-            listaConsumoCheckOut.setItems(consumoCheckOut);
+            if (!idCheckOut.getText().equals("")) {
+                reserva = Hotel.getInstance().buscarReserva(Long.parseLong(idCheckOut.getText()));
+                nomeCheckOut.setText(reserva.getHospede().getNome());
+                cpfCheckOut.setText(reserva.getHospede().getCpf());
+                tipoQuartoCheckOut.setText(reserva.getQuarto().getTipo().name());
+                tipoReservaCheckOut.setText(reserva.getTipoReserva().name());
+                ObservableList<Enum> consumoCheckOut = FXCollections.observableArrayList(reserva.getHospede().getCartaoConsumo().getListaConsumo());
+                listaConsumoCheckOut.setItems(consumoCheckOut);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Reserva não identificada.");
+            }
 
         } catch (ReservaNaoExisteException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());

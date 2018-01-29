@@ -91,10 +91,15 @@ public class TelaHospedeController implements Initializable {
     @FXML
     protected void buscarHospede() {
         try {
-            hospede = Hotel.getInstance().buscarHospede(cpfBuscar.getText());
-            labelNome.setText(hospede.getNome());
-            labelTelefone.setText(hospede.getTelefone());
-            frequenciaHospede.setText(String.valueOf(hospede.getFrequencia()));
+            if (!cpfBuscar.getText().equals("")) {
+                hospede = Hotel.getInstance().buscarHospede(cpfBuscar.getText());
+                labelNome.setText(hospede.getNome());
+                labelTelefone.setText(hospede.getTelefone());
+                frequenciaHospede.setText(String.valueOf(hospede.getFrequencia()));
+            } else {
+                JOptionPane.showMessageDialog(null, "Hóspede não identificado.");
+            }
+
         } catch (HospedeNaoExisteException hne) {
             JOptionPane.showMessageDialog(null, hne.getMessage());
         }
@@ -104,9 +109,14 @@ public class TelaHospedeController implements Initializable {
     @FXML
     protected void buscarAlterar() {
         try {
-            hospede = Hotel.getInstance().buscarHospede(cpfAlterar.getText());
-            txtNomeAlterar.setText(hospede.getNome());
-            txtTelefoneAlterar.setText(hospede.getTelefone());
+            if (!cpfAlterar.getText().equals("")) {
+                hospede = Hotel.getInstance().buscarHospede(cpfAlterar.getText());
+                txtNomeAlterar.setText(hospede.getNome());
+                txtTelefoneAlterar.setText(hospede.getTelefone());
+            } else {
+                JOptionPane.showMessageDialog(null, "Hóspede não identificado.");
+            }
+
         } catch (HospedeNaoExisteException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -116,9 +126,14 @@ public class TelaHospedeController implements Initializable {
     @FXML
     protected void buscarRemover() {
         try {
-            hospede = Hotel.getInstance().buscarHospede(cpfRemover.getText());
-            nomeRemover.setText(hospede.getNome());
-            telefoneRemover.setText(hospede.getTelefone());
+            if (!cpfRemover.getText().equals("")) {
+                hospede = Hotel.getInstance().buscarHospede(cpfRemover.getText());
+                nomeRemover.setText(hospede.getNome());
+                telefoneRemover.setText(hospede.getTelefone());
+            } else {
+                JOptionPane.showMessageDialog(null, "Hóspede não identificado.");
+            }
+
         } catch (HospedeNaoExisteException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

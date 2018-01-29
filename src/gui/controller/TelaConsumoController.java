@@ -16,7 +16,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
 import negocio.entidade.BebidasEnum;
-import negocio.entidade.RefeicaoEnum;
+import negocio.entidade.RefeicoesEnum;
 import negocio.entidade.Reserva;
 import negocio.entidade.TipoQuartoEnum;
 import negocio.entidade.TipoReservaEnum;
@@ -41,7 +41,7 @@ public class TelaConsumoController implements Initializable {
     @FXML
     private ComboBox<BebidasEnum> listaBebidas = new ComboBox<>();
     @FXML
-    private ComboBox<RefeicaoEnum> listaRefeicoes = new ComboBox<>();
+    private ComboBox<RefeicoesEnum> listaRefeicoes = new ComboBox<>();
     @FXML
     private ComboBox<Enum> listaRemocao = new ComboBox<>();
     @FXML
@@ -127,12 +127,12 @@ public class TelaConsumoController implements Initializable {
     protected void preencherTipoRefeicao() {
         preencherTipoBebidas();
 
-        ArrayList<RefeicaoEnum> tipoRefeicao = new ArrayList<>();
-        tipoRefeicao.add(RefeicaoEnum.Almoco);
-        tipoRefeicao.add(RefeicaoEnum.CafeDaManha);
-        tipoRefeicao.add(RefeicaoEnum.Janta);
+        ArrayList<RefeicoesEnum> tipoRefeicao = new ArrayList<>();
+        tipoRefeicao.add(RefeicoesEnum.Almoco);
+        tipoRefeicao.add(RefeicoesEnum.CafeDaManha);
+        tipoRefeicao.add(RefeicoesEnum.Janta);
 
-        ObservableList<RefeicaoEnum> itens = FXCollections.observableArrayList(tipoRefeicao);
+        ObservableList<RefeicoesEnum> itens = FXCollections.observableArrayList(tipoRefeicao);
         listaRefeicoes.setItems(itens);
 
     }
