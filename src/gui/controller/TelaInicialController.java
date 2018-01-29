@@ -45,6 +45,11 @@ public class TelaInicialController implements Initializable {
         pane.getChildren().clear();
         pane.getChildren().add(getNode("/gui/view/TelaQuarto.fxml"));
     }
+    @FXML
+    public void abrirTelaConsumo() {
+        pane.getChildren().clear();
+        pane.getChildren().add(getNode("/gui/view/TelaConsumo.fxml"));
+    }
     
 
     public Node getNode(String node) {
