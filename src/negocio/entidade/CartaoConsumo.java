@@ -19,7 +19,7 @@ public class CartaoConsumo {
                 total += ((BebidasEnum)c).getPreco();
             }
             else{
-                total += ((RefeicaoEnum)c).getPreco();
+                total += ((RefeicoesEnum)c).getPreco();
             }
         }
 
